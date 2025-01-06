@@ -70,7 +70,7 @@ nav ul li a:hover {
 
 /* Hero Section */
 #hero {
-    background: url('Blooming Mind Transparent Logo.png') no-repeat center center/cover;
+    background: url('Logo.png') no-repeat center center/cover;
     color: #fff;
     height: 300px;
     display: flex;
