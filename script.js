@@ -4,7 +4,7 @@ document.getElementById('menu-toggle').addEventListener('click', () => {
 });
 
 // Close the navigation menu when a link is clicked (for mobile screens)
-const navLinks = document.querySelectorAll('.nav-link');
+const navLinks = document.querySelectorAll('#nav-menu .nav-link');
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         document.getElementById('nav-menu').classList.remove('active');
