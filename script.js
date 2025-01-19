@@ -1,21 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Menu Toggle
     const menuToggle = document.getElementById('menu-toggle');
-    const navMenu = document.getElementById('nav-menu');
+    const topNav = document.getElementById('myTopnav');
 
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-        });
-    }
-
-    // Close the mobile menu when a link is clicked
-    const navLinks = document.querySelectorAll('#nav-menu a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            navMenu.classList.remove('active');
-        });
+    // Toggle the menu visibility when the hamburger icon is clicked
+    menuToggle.addEventListener('click', function() {
+        topNav.classList.toggle('responsive');
+        console.log('Menu toggled');
     });
+});
 
     // Handle form submission with validation and user feedback
     const form = document.getElementById('contact-form');
