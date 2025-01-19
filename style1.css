@@ -68,50 +68,57 @@ nav ul li a:hover {
     cursor: pointer;
 }
 
-/* Mobile Styles */
+/* Hero Section */
+#hero {
+    background: url('Blooming Mind.jpg') no-repeat center center/cover;
+    color: #2e4a39;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#hero div {
+    position: relative;
+    z-index: 2;
+}
+
+/* Section Styles */
+section {
+    padding: 40px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Mobile Navigation */
 @media (max-width: 768px) {
     nav ul {
-        display: none; /* Hide menu items on mobile */
         flex-direction: column;
-        background-color: var(--primary-color);
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 100%;
-        padding: 10px 0;
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
     }
 
     nav ul.active {
-        display: flex; /* Show menu when active */
-    }
-
-    .menu-toggle {
-        display: block; /* Show menu toggle on mobile */
-    }
-
-    nav ul li {
-        text-align: center;
-        margin: 10px 0;
-    }
-
-    nav ul li a {
-        color: #2e4a39;
-        padding: 10px;
-        width: 100%;
-        text-align: center;
-        display: block;
+        display: flex;
     }
 }
 
-/* For larger screens (landscape or desktop) */
-@media (min-width: 769px) {
-    nav ul {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .menu-toggle {
-        display: none; /* Hide menu toggle on larger screens */
-    }
+/* Form Status */
+#form-status {
+    font-size: 14px;
+    margin-top: 10px;
 }
