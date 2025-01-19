@@ -68,6 +68,11 @@ nav ul li a:hover {
     cursor: pointer;
 }
 
+/* Show the menu when active */
+nav ul.active {
+    display: block; /* Make menu visible */
+}
+
 /* Hero Section */
 #hero {
     background: url('Blooming Mind.jpg') no-repeat center center/cover;
@@ -101,24 +106,20 @@ section {
     border-bottom: 1px solid #ddd;
 }
 
-/* Mobile Navigation */
+/* Responsive Styles */
 @media (max-width: 768px) {
     nav ul {
+        display: none;  /* Hide menu by default on small screens */
         flex-direction: column;
-        display: none;
-    }
-
-    .menu-toggle {
-        display: block;
+        padding: 0;
+        gap: 10px;
     }
 
     nav ul.active {
-        display: flex;
+        display: block; /* Show the menu when active */
     }
-}
 
-/* Form Status */
-#form-status {
-    font-size: 14px;
-    margin-top: 10px;
+    .menu-toggle {
+        display: block; /* Show the hamburger menu */
+    }
 }
