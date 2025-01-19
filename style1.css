@@ -1,14 +1,17 @@
 /* General Styles */
 :root {
-    --primary-color: #FFFFFF;
-    --secondary-color: #fef69f;
-    --background-color: #acc673;
-    --accent-color: #f0827b;
-    --text-color: #2e4a39;
+    --primary-color: #FFFFFF; /* White */
+    --secondary-color: #fef69f; /* Soft yellow */
+    --background-color: #acc673; /* Light green */
+    --accent-color: #f0827b; /* Soft pink */
+    --text-color: #2e4a39; /* Dark green */
+    --button-color: #4CAF50; /* Green for buttons */
+    --error-color: #f44336; /* Red for error messages */
+    --success-color: #4CAF50; /* Green for success messages */
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -26,9 +29,10 @@ body {
 /* Header Styles */
 header {
     background: var(--primary-color);
-    color: #2e4a39;
+    color: var(--text-color);
     padding: 20px 0;
     position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .header-container {
@@ -38,7 +42,7 @@ header {
 }
 
 .logo {
-    height: 110px;
+    height: 100px; /* Adjusted for a cleaner look */
 }
 
 nav ul {
@@ -51,11 +55,14 @@ nav ul {
 }
 
 nav ul li a {
-    color: #2e4a39;
+    color: var(--text-color);
     text-decoration: none;
+    font-size: 1.1rem; /* Slightly larger font for easier reading */
+    transition: color 0.3s ease;
 }
 
 nav ul li a:hover {
+    color: var(--accent-color);
     text-decoration: underline;
 }
 
@@ -64,20 +71,21 @@ nav ul li a:hover {
     font-size: 24px;
     background: none;
     border: none;
-    color: #2e4a39;
+    color: var(--text-color);
     cursor: pointer;
 }
 
 /* Hero Section */
 #hero {
     background: url('Blooming Mind.jpg') no-repeat center center/cover;
-    color: #2e4a39;
-    height: 300px;
+    color: var(--text-color);
+    height: 350px; /* Increased height for more impact */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     position: relative;
+    border-bottom: 5px solid var(--secondary-color);
 }
 
 #hero::before {
@@ -87,7 +95,7 @@ nav ul li a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.4); /* Darker overlay for text contrast */
 }
 
 #hero div {
@@ -95,10 +103,81 @@ nav ul li a:hover {
     z-index: 2;
 }
 
+#hero h2 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 10px;
+}
+
+#hero p {
+    font-size: 1.2rem;
+    color: white;
+}
+
 /* Section Styles */
 section {
-    padding: 40px 0;
+    padding: 60px 0;
     border-bottom: 1px solid #ddd;
+}
+
+section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+section p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input, form textarea {
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus, form textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+form button {
+    padding: 15px;
+    background-color: var(--button-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: var(--accent-color);
+}
+
+/* Form Status Messages */
+#form-status {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+#form-status.error {
+    color: var(--error-color);
+}
+
+#form-status.success {
+    color: var(--success-color);
 }
 
 /* Responsive Styles */
@@ -108,11 +187,31 @@ section {
         display: none;
     }
 
+    nav ul.active {
+        display: flex;
+    }
+
     .menu-toggle {
         display: block;
     }
 
-    nav ul.active {
-        display: flex;
+    #hero {
+        height: 250px; /* Adjusted for mobile view */
+    }
+
+    #hero h2 {
+        font-size: 2rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
+    }
+
+    section {
+        padding: 40px 0; /* Less padding on mobile */
+    }
+
+    section h2 {
+        font-size: 1.5rem;
     }
 }
