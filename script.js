@@ -1,13 +1,20 @@
-// Toggle navigation menu on small screens
-document.getElementById('menu-toggle').addEventListener('click', () => {
-    document.getElementById('nav-menu').classList.toggle('active');
-});
+document.addEventListener('DOMContentLoaded', function() {
+    // Toggle navigation menu on small screens
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
 
-// Close the navigation menu when a link is clicked (for mobile screens)
-const navLinks = document.querySelectorAll('#nav-menu .nav-link');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        document.getElementById('nav-menu').classList.remove('active');
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    // Close the navigation menu when a link is clicked (for mobile screens)
+    const navLinks = document.querySelectorAll('#nav-menu .nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+        });
     });
 });
 
