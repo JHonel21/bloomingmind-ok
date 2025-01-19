@@ -15,11 +15,11 @@
             <img src="Logo.png" alt="Blooming Mind Logo" class="logo">
             <h1>Blooming Mind</h1>
             <button id="menu-toggle" class="menu-toggle">☰</button>
-            <nav id="nav-menu">
+            <nav id="nav-menu" class="nav-menu">
                 <ul>
-                    <li><a href="about.html" class="nav-link">About</a></li>
-                    <li><a href="services.html" class="nav-link">Services</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -28,8 +28,50 @@
     <!-- Hero Section -->
     <section id="hero">
         <div class="container">
-            <h2>Welcome to Blooming Mind</h2>
-            <p>Your path to mental wellness starts here.</p>
+            <h2>Words</h2>
+            <p>Description</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>At Blooming Mind...</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <ul>
+                <li>Individual Counseling</li>
+                <li>Family Therapy</li>
+                <li>Group Therapy</li>
+                <li>Telehealth Sessions</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or would like to schedule an appointment, please reach out using the form below.</p>
+            <form id="contact-form">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+            <p id="form-status"></p>
         </div>
     </section>
 
@@ -40,6 +82,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script> <!-- Ensure this is loaded after HTML -->
+    <script src="script.js"></script>
 </body>
 </html>
