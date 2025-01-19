@@ -68,10 +68,10 @@ nav ul li a:hover {
     cursor: pointer;
 }
 
-/* Mobile menu - hide by default */
+/* Mobile Styles */
 @media (max-width: 768px) {
     nav ul {
-        display: none;
+        display: none; /* Hide menu items on mobile */
         flex-direction: column;
         background-color: var(--primary-color);
         position: absolute;
@@ -82,11 +82,11 @@ nav ul li a:hover {
     }
 
     nav ul.active {
-        display: flex;
+        display: flex; /* Show menu when active */
     }
 
     .menu-toggle {
-        display: block;
+        display: block; /* Show menu toggle on mobile */
     }
 
     nav ul li {
@@ -103,8 +103,8 @@ nav ul li a:hover {
     }
 }
 
-/* For tablet and larger screens (landscape mode) */
-@media (min-width: 768px) {
+/* For larger screens (landscape or desktop) */
+@media (min-width: 769px) {
     nav ul {
         display: flex;
         flex-direction: row;
