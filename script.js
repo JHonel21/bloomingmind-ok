@@ -7,7 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
         menuToggle.addEventListener('click', function() {
             // Toggle the menu visibility
             navMenu.classList.toggle('active');
+            console.log('Menu toggled');
         });
+    } else {
+        console.log('Menu toggle or nav menu not found');
     }
 
     // Close the navigation menu when a link is clicked (for mobile screens)
@@ -15,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             navMenu.classList.remove('active');
+            console.log('Menu closed');
         });
     });
 });
