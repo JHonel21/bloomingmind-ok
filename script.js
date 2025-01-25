@@ -7,18 +7,29 @@ document.addEventListener('DOMContentLoaded', function() {
         menuToggle.addEventListener('click', function() {
             // Toggle the menu visibility
             navMenu.classList.toggle('active');
-            console.log('Menu toggled');
         });
-    } else {
-        console.log('Menu toggle or nav menu not found');
     }
 
     // Close the navigation menu when a link is clicked (for mobile screens)
-    const navLinks = document.querySelectorAll('#nav-menu a'); // Fixed this line
+    const navLinks = document.querySelectorAll('#nav-menu a');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             navMenu.classList.remove('active');
-            console.log('Menu closed');
         });
+    });
+
+    // Example of AJAX form submission
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        fetch('/.netlify/functions/send-email', {
+            method: 'POST',
+            body: formData
+        }).then(response => response.json())
+          .then(data => {
+              alert("Message Sent");
+          }).catch(error => {
+              alert("Error sending message");
+          });
     });
 });
