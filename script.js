@@ -1,35 +1,57 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const menuToggle = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
 
     // Ensure elements exist
     if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', function() {
+        menuToggle.addEventListener('click', function () {
             // Toggle the menu visibility
             navMenu.classList.toggle('active');
         });
     }
 
     // Close the navigation menu when a link is clicked (for mobile screens)
-    const navLinks = document.querySelectorAll('#nav-menu a');
+    const navLinks = document.querySelectorAll('#nav-menu li a');
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
             navMenu.classList.remove('active');
         });
     });
 
-    // Example of AJAX form submission
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(this);
-        fetch('/.netlify/functions/send-email', {
-            method: 'POST',
-            body: formData
-        }).then(response => response.json())
-          .then(data => {
-              alert("Message Sent");
-          }).catch(error => {
-              alert("Error sending message");
-          });
-    });
+    // AJAX form submission for the contact form
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent default form submission
+
+            // Gather form data
+            const formData = {
+                name: this.name.value,
+                email: this.email.value,
+                message: this.message.value,
+            };
+
+            // Send the data using fetch
+            fetch('/.netlify/functions/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Message Sent Successfully!');
+                        this.reset(); // Reset form after successful submission
+                    } else {
+                        return response.text().then(text => {
+                            throw new Error(text || 'Error sending message');
+                        });
+                    }
+                })
+                .catch(error => {
+                    alert(`Failed to send message: ${error.message}`);
+                });
+        });
+    }
 });
