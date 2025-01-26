@@ -1,15 +1,14 @@
 /* General Styles */
 :root {
-    --primary-color: #2e4a39;
+    --primary-color: #FFFFFF;
     --secondary-color: #fef69f;
     --background-color: #acc673;
     --accent-color: #f0827b;
     --text-color: #2e4a39;
-    --white: #ffffff;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -27,7 +26,7 @@ body {
 /* Header Styles */
 header {
     background: var(--primary-color);
-    color: var(--white);
+    color: var(--text-color);
     padding: 20px 0;
 }
 
@@ -38,45 +37,41 @@ header {
 }
 
 .logo {
-    height: 80px;
+    height: 100px;
 }
 
-.nav-list {
+nav ul {
     display: flex;
+    justify-content: center;
     gap: 20px;
-    list-style: none;
     margin: 0;
     padding: 0;
+    list-style: none;
 }
 
-.nav-list li a {
-    color: var(--white);
+nav ul li a {
+    color: var(--text-color);
     text-decoration: none;
+    font-weight: 500;
 }
 
-.nav-list li a:hover {
+nav ul li a:hover {
     text-decoration: underline;
 }
 
-#menu-toggle {
+.menu-toggle {
     display: none;
     font-size: 24px;
     background: none;
     border: none;
-    color: var(--white);
+    color: var(--text-color);
     cursor: pointer;
-}
-
-.nav-list.active {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
 }
 
 /* Hero Section */
 #hero {
     background: url('Blooming Mind.jpg') no-repeat center center/cover;
-    color: var(--white);
+    color: var(--primary-color);
     height: 300px;
     display: flex;
     justify-content: center;
@@ -85,48 +80,65 @@ header {
     position: relative;
 }
 
-.cta-button {
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#hero div {
+    position: relative;
+    z-index: 2;
+}
+
+#hero h2 {
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+#hero p {
+    font-size: 1.2em;
+    margin: 10px 0 20px;
+}
+
+#hero .button {
     display: inline-block;
-    background: var(--accent-color);
-    color: var(--white);
     padding: 10px 20px;
-    border-radius: 5px;
+    background: var(--accent-color);
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: 500;
-    margin-top: 10px;
+    border-radius: 5px;
 }
 
-.cta-button:hover {
-    background: #d96d6a;
+#hero .button:hover {
+    background: #d16a67;
 }
 
-/* Footer */
+/* Footer Styles */
 footer {
     text-align: center;
-    padding: 10px 0;
+    padding: 20px;
     background: var(--primary-color);
-    color: var(--white);
+    color: var(--text-color);
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    .nav-list {
+    nav ul {
         display: none;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        background: var(--primary-color);
-        padding: 10px;
-        border-radius: 5px;
         flex-direction: column;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     }
 
-    #menu-toggle {
-        display: block;
-    }
-
-    .nav-list.active {
+    nav ul.active {
         display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
     }
 }
