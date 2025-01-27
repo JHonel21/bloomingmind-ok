@@ -176,11 +176,14 @@ footer p {
         align-items: center;
         z-index: 10; /* Positioned behind the button */
         padding: 0;
+        transition: transform 0.3s ease-out; /* Smooth transition */
+        transform: translateX(-100%); /* Initially off-screen */
     }
 
     /* Show menu when active */
     nav ul.active {
         display: flex;
+        transform: translateX(0); /* Slide in */
     }
 
     /* Menu Items */
