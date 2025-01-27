@@ -72,6 +72,7 @@ nav ul li a:hover {
     color: var(--secondary-color);
 }
 
+/* Hamburger Icon (Menu Toggle) */
 #menu-toggle {
     display: none;
     color: var(--white);
@@ -79,6 +80,16 @@ nav ul li a:hover {
     border: none;
     font-size: 24px;
     cursor: pointer;
+}
+
+/* Hamburger Icon */
+#menu-toggle::before {
+    content: "&#9776;";  /* Hamburger menu character */
+}
+
+/* Active Menu Icon (Close Icon) */
+#menu-toggle.active::before {
+    content: "×";  /* Close icon */
 }
 
 /* Hero Section */
@@ -141,10 +152,12 @@ footer p {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+    /* Show hamburger icon on mobile */
     #menu-toggle {
         display: block;
     }
 
+    /* Menu Styles */
     nav ul {
         display: none;
         flex-direction: column;
@@ -161,11 +174,21 @@ footer p {
         padding: 0;
     }
 
+    /* Show menu when active */
     nav ul.active {
         display: flex;
     }
 
+    /* Menu Items */
     nav ul li {
         margin: 20px 0;
+    }
+
+    /* Change the position of the hamburger icon when menu is active */
+    #menu-toggle {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
     }
 }
