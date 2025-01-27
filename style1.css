@@ -149,9 +149,23 @@ footer p {
         display: none;
         flex-direction: column;
         gap: 10px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--primary-color);
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        padding: 0;
     }
 
     nav ul.active {
         display: flex;
+    }
+
+    nav ul li {
+        margin: 20px 0;
     }
 }
