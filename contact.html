@@ -7,6 +7,8 @@
     <meta name="keywords" content="contact, counseling, mental health, therapy">
     <title>Contact Us - Blooming Mind</title>
     <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
     <!-- Header Section -->
@@ -47,6 +49,14 @@
         </div>
     </section>
 
+    <!-- Map Section -->
+    <section id="map-section">
+        <div class="container">
+            <h3>Visit Us</h3>
+            <div id="map" style="width: 100%; height: 450px;"></div>
+        </div>
+    </section>
+
     <!-- Footer Section -->
     <footer>
         <div class="container">
@@ -54,6 +64,20 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Initialize Leaflet map
+        const map = L.map('map').setView([36.0233620, -95.9782181], 13); // Replace with your latitude and longitude
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add a marker for your location
+        L.marker([36.0233620, -95.9782181]) // Replace with your latitude and longitude
+            .addTo(map)
+            .bindPopup('<b>Blooming Mind</b><br>715 W. Main St Ste N. Jenks, OK 74037')
+            .openPopup();
+    </script>
 </body>
 </html>
