@@ -84,12 +84,12 @@ nav ul li a:hover {
 
 /* Hamburger Icon */
 #menu-toggle::before {
-    content: "&#9776;";  /* Hamburger menu character */
+    content: "\2630";  /* Hamburger menu character */
 }
 
 /* Active Menu Icon (Close Icon) */
 #menu-toggle.active::before {
-    content: "×";  /* Close icon */
+    content: "\00D7";  /* Close icon */
 }
 
 /* Hero Section */
