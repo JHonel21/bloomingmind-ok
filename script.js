@@ -5,8 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Ensure elements exist
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', function () {
-            // Toggle the menu visibility
+            // Toggle the menu visibility and the icon (hamburger/close)
             navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
         });
     }
 
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', function () {
             if (window.innerWidth <= 768) { // Close the menu only for mobile
                 navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
             }
         });
     });
