@@ -14,7 +14,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const navLinks = document.querySelectorAll('#nav-menu li a');
     navLinks.forEach(link => {
         link.addEventListener('click', function () {
-            navMenu.classList.remove('active');
+            if (window.innerWidth <= 768) { // Close the menu only for mobile
+                navMenu.classList.remove('active');
+            }
         });
     });
 
