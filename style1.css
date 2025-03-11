@@ -1,224 +1,254 @@
-/* General Body Styling */
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif; /* Adjust font family to your preference */
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4; /* Light background color */
-  color: #333; /* Default text color */
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
 }
 
-/* Navbar Styling */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff; /* Adjust to match your site's color scheme */
-  padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for a sleek look */
+.container {
+    width: 90%;
+    margin: 0 auto;
 }
 
-.navbar-list {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
+/* Header Section */
+header {
+    background-color: #ffffff;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-list li {
-  margin-right: 20px;
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.navbar-list li:last-child {
-  margin-right: 0; /* Remove margin from the last item */
-}
-
-.navbar-list a {
-  text-decoration: none;
-  font-size: 16px;
-  color: #333; /* Adjust link color */
-  font-weight: 500; /* Adjust text weight if desired */
-  transition: color 0.3s ease; /* Smooth transition for hover effect */
-}
-
-.navbar-list a:hover {
-  color: #007BFF; /* Color on hover (blue shade, adjust if needed) */
-}
-
-/* Current Patients Link */
-.navbar-list li:last-child a {
-  font-weight: 600; /* Highlight "Current Patients" with a bolder font */
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .navbar-list {
-    flex-direction: column;
-    width: 100%;
-    padding-left: 0;
-  }
-
-  .navbar-list li {
-    margin-bottom: 10px;
-    width: 100%;
-  }
-
-  .navbar-list li:last-child {
-    margin-bottom: 0; /* Remove margin from the last item */
-  }
-
-  .navbar-list a {
-    font-size: 18px; /* Slightly larger font on mobile */
-    padding: 10px 15px;
-    display: block;
-    width: 100%;
-    text-align: left; /* Align text to the left */
-  }
-
-  .navbar-list a:hover {
-    background-color: #f0f0f0; /* Add a background color on hover for better visibility */
-  }
-
-  .navbar-toggle {
-    display: block; /* Show toggle button on mobile */
-  }
-}
-
-/* Footer Styling */
-footer {
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-}
-
-footer a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px;
-  margin-left: 10px;
-}
-
-footer a:hover {
-  color: #007BFF;
-}
-
-/* Main Content Styling */
-main {
-  padding: 20px;
-  background-color: #fff;
-}
-
-h1, h2, h3 {
-  color: #333;
+.logo {
+    width: 150px;
+    height: auto;
 }
 
 h1 {
-  font-size: 28px;
+    font-size: 2rem;
+    color: #333;
+    margin-left: 10px;
 }
 
-h2 {
-  font-size: 24px;
+nav {
+    position: relative;
 }
 
-h3 {
-  font-size: 20px;
+#menu-toggle {
+    display: none;
 }
 
-p {
-  font-size: 16px;
-  line-height: 1.5;
-  margin-bottom: 15px;
+.nav-list {
+    display: flex;
+    list-style: none;
 }
 
-/* Button Styling */
-button {
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 4px;
+.nav-list li {
+    margin-left: 20px;
 }
 
-button:hover {
-  background-color: #0056b3;
+.nav-list li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 700;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
 }
 
-/* Form Styling */
-form {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.nav-list li a:hover {
+    background-color: #f4f4f4;
+    border-radius: 5px;
 }
 
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-textarea {
-  height: 150px;
-}
-
-input[type="submit"] {
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  padding: 12px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-input[type="submit"]:hover {
-  background-color: #218838;
-}
-
-/* Link Styling */
-a {
-  color: #007BFF;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #0056b3;
-}
-
-/* Optional Mobile Menu Toggle Styles */
-.navbar-toggle {
-  display: none; /* Initially hidden, shown only on mobile */
-  background-color: #333;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-}
-
+/* Mobile Menu */
 @media (max-width: 768px) {
-  .navbar-toggle {
-    display: block; /* Show toggle button on mobile */
-  }
+    #menu-toggle {
+        display: block;
+        background-color: #333;
+        width: 30px;
+        height: 3px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
 
-  .navbar-list.active {
-    display: block; /* Show menu when toggle is active */
-  }
+    .nav-list {
+        display: none;
+        position: absolute;
+        top: 50px;
+        right: 20px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        width: 200px;
+    }
+
+    .nav-list li {
+        margin: 0;
+    }
+
+    .nav-list.active {
+        display: flex;
+    }
+
+    .nav-list li a {
+        padding: 10px;
+        text-align: center;
+    }
 }
 
-/* Additional Spacing and Alignment */
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+/* Hero Section */
+#hero {
+    background-color: #4e73df;
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    background-color: #ffffff;
+    color: #4e73df;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.cta-button:hover {
+    background-color: #f4f4f4;
+}
+
+/* History Section */
+#history {
+    padding: 50px 0;
+    background-color: #ffffff;
+}
+
+#history h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+#history p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Team Section */
+#team {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+}
+
+#team h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.team-member {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.team-member img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.team-member h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.team-member p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Services Section */
+#services {
+    padding: 50px 0;
+    background-color: #ffffff;
+}
+
+#services h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+#services ul {
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+#services li {
+    margin-bottom: 15px;
+}
+
+/* Footer Section */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Added Media Queries for Mobile */
+@media (max-width: 768px) {
+    header {
+        padding: 20px 0;
+    }
+
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 {
+        margin: 10px 0;
+    }
+
+    .logo {
+        width: 120px;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        padding-top: 20px;
+    }
+
+    .nav-list li {
+        margin-bottom: 10px;
+    }
+
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
 }
