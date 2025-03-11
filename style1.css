@@ -1,224 +1,237 @@
-/* General Body Styling */
+/* General Styles */
+:root {
+    --primary-color: #5A6F4E;  /* Deep Olive Green for header/footer */
+    --secondary-color: #8A9A78; /* Muted Sage for accents */
+    --background-color: #EADDC9; /* Warm Beige for main background */
+    --text-color: #3B3A36; /* Dark Warm Gray for readability */
+    --white: #FAF3E0; /* Off-white for text contrast */
+    --highlight-color: #C97C5D; /* Soft Terracotta for buttons */
+}
+
 body {
-  font-family: Arial, sans-serif; /* Adjust font family to your preference */
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4; /* Light background color */
-  color: #333; /* Default text color */
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    line-height: 1.6;
 }
 
-/* Navbar Styling */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff; /* Adjust to match your site's color scheme */
-  padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for a sleek look */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
 }
 
-.navbar-list {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
+/* Header Styles */
+header {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 15px 0;
 }
 
-.navbar-list li {
-  margin-right: 20px;
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.navbar-list li:last-child {
-  margin-right: 0; /* Remove margin from the last item */
-}
-
-.navbar-list a {
-  text-decoration: none;
-  font-size: 16px;
-  color: #333; /* Adjust link color */
-  font-weight: 500; /* Adjust text weight if desired */
-  transition: color 0.3s ease; /* Smooth transition for hover effect */
-}
-
-.navbar-list a:hover {
-  color: #007BFF; /* Color on hover (blue shade, adjust if needed) */
-}
-
-/* Current Patients Link */
-.navbar-list li:last-child a {
-  font-weight: 600; /* Highlight "Current Patients" with a bolder font */
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .navbar-list {
-    flex-direction: column;
-    width: 100%;
-    padding-left: 0;
-  }
-
-  .navbar-list li {
-    margin-bottom: 10px;
-    width: 100%;
-  }
-
-  .navbar-list li:last-child {
-    margin-bottom: 0; /* Remove margin from the last item */
-  }
-
-  .navbar-list a {
-    font-size: 18px; /* Slightly larger font on mobile */
-    padding: 10px 15px;
-    display: block;
-    width: 100%;
-    text-align: left; /* Align text to the left */
-  }
-
-  .navbar-list a:hover {
-    background-color: #f0f0f0; /* Add a background color on hover for better visibility */
-  }
-
-  .navbar-toggle {
-    display: block; /* Show toggle button on mobile */
-  }
-}
-
-/* Footer Styling */
-footer {
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-}
-
-footer a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px;
-  margin-left: 10px;
-}
-
-footer a:hover {
-  color: #007BFF;
-}
-
-/* Main Content Styling */
-main {
-  padding: 20px;
-  background-color: #fff;
-}
-
-h1, h2, h3 {
-  color: #333;
+.logo {
+    width: 100px;
+    height: auto;
 }
 
 h1 {
-  font-size: 28px;
+    font-size: 1.8em;
+    font-weight: 700;
+    margin: 0;
 }
 
-h2 {
-  font-size: 24px;
+nav {
+    display: flex;
+    align-items: center;
 }
 
-h3 {
-  font-size: 20px;
+nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-p {
-  font-size: 16px;
-  line-height: 1.5;
-  margin-bottom: 15px;
+nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1em;
+    transition: color 0.3s ease-in-out;
 }
 
-/* Button Styling */
-button {
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 4px;
+nav ul li a:hover {
+    color: var(--highlight-color);
 }
 
-button:hover {
-  background-color: #0056b3;
+/* Hamburger Icon (Menu Toggle) */
+#menu-toggle {
+    display: none;
+    color: var(--white);
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
 }
 
-/* Form Styling */
-form {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+#menu-toggle::before {
+    content: "\2630"; /* Hamburger menu character (≡) */
 }
 
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+#menu-toggle.active::before {
+    content: "\00D7"; /* Close icon (×) */
 }
 
-textarea {
-  height: 150px;
+/* Hero Section */
+#hero {
+    background: url('Blooming Mind.jpg') no-repeat center center/cover;
+    height: 450px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
 }
 
-input[type="submit"] {
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  padding: 12px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 4px;
+.hero-content {
+    background: rgba(250, 243, 224, 0.9); /* Softer, warm off-white overlay */
+    color: var(--text-color);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-input[type="submit"]:hover {
-  background-color: #218838;
+.hero-content h2 {
+    font-size: 2.8em;
+    color: var(--primary-color);
+    font-weight: 700;
 }
 
-/* Link Styling */
-a {
-  color: #007BFF;
-  text-decoration: none;
+.hero-content p {
+    font-size: 1.3em;
+    color: var(--text-color);
 }
 
-a:hover {
-  color: #0056b3;
+.cta-button {
+    background: var(--highlight-color);
+    color: var(--white);
+    padding: 12px 25px;
+    font-size: 1.2em;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Optional Mobile Menu Toggle Styles */
-.navbar-toggle {
-  display: none; /* Initially hidden, shown only on mobile */
-  background-color: #333;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
+.cta-button:hover {
+    background: #b36b53;
 }
 
+/* Service Cards */
+.service-card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Footer */
+footer {
+    background: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9em;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .navbar-toggle {
-    display: block; /* Show toggle button on mobile */
-  }
+    /* Show hamburger icon on mobile */
+    #menu-toggle {
+        display: block;
+    }
 
-  .navbar-list.active {
-    display: block; /* Show menu when toggle is active */
-  }
-}
+    nav ul {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--primary-color);
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        padding: 0;
+        transition: transform 0.3s ease-out;
+        transform: translateX(-100%);
+    }
 
-/* Additional Spacing and Alignment */
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+    nav ul.active {
+        display: flex;
+        transform: translateX(0);
+    }
+
+    nav ul li {
+        margin: 20px 0;
+    }
+
+    /* Adjust hero section */
+    #hero {
+        height: 350px;
+        padding: 10px;
+    }
+
+    .hero-content {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .hero-content h2 {
+        font-size: 2.2em;
+    }
+
+    .hero-content p {
+        font-size: 1.1em;
+    }
+
+    .cta-button {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+
+    .service-card {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    footer {
+        font-size: 0.8em;
+    }
 }
