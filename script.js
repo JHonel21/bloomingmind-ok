@@ -2,6 +2,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuToggle = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
 
+    // Custom notification function
+    function showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+
     // Ensure elements exist
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', function () {
@@ -11,28 +22,23 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Close the navigation menu when a link is clicked (for mobile screens)
-    const navLinks = document.querySelectorAll('#nav-menu li a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-            if (window.innerWidth <= 768) { // Close the menu only for mobile
-                navMenu.classList.remove('active');
-                menuToggle.classList.remove('active');
-            }
-        });
+    // Cache window width and update on resize
+    let windowWidth = window.innerWidth;
+    window.addEventListener('resize', function () {
+        windowWidth = window.innerWidth;
     });
 
-    // AJAX form submission for the contact form
-    const contactForm = document.getElementById('contact-form');
+    // Close the navigation menu when a link is clicked (for mobile screens)
+    const navLinks = document.querySelectorAll('#nav-menu li a');
     if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevent default form submission
+        contactForm.addEventListener('submit', function (event) {
+            event.preventDefault();
 
             // Gather form data
             const formData = {
-                name: this.name.value,
-                email: this.email.value,
-                message: this.message.value,
+                name: contactForm.elements['name'].value,
+                email: contactForm.elements['email'].value,
+                message: contactForm.elements['message'].value,
             };
 
             // Send the data using fetch
@@ -45,8 +51,8 @@ document.addEventListener('DOMContentLoaded', function () {
             })
                 .then(response => {
                     if (response.ok) {
-                        alert('Message Sent Successfully!');
-                        this.reset(); // Reset form after successful submission
+                        showNotification('Message Sent Successfully!', 'success');
+                        contactForm.reset(); // Reset form after successful submission
                     } else {
                         return response.text().then(text => {
                             throw new Error(text || 'Error sending message');
@@ -54,7 +60,28 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 })
                 .catch(error => {
-                    alert(`Failed to send message: ${error.message}`);
+                    showNotification(`Failed to send message: ${error.message}`, 'error');
+                });
+        });
+    }
+
+    function showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+});                 } else {
+                        return response.text().then(text => {
+                            throw new Error(text || 'Error sending message');
+                        });
+                    }
+                })
+                .catch(error => {
+                    showNotification(`Failed to send message: ${error.message}`, 'error');
                 });
         });
     }
