@@ -7,8 +7,8 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: #f4f4f4; /* Light gray background */
+    color: #333; /* Dark text color */
     line-height: 1.6;
 }
 
@@ -19,9 +19,12 @@ body {
 
 /* Header Section */
 header {
-    background-color: #ffffff;
+    background-color: #ffffff; /* White background for the header */
     padding: 10px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .header-container {
@@ -37,7 +40,7 @@ header {
 
 h1 {
     font-size: 2rem;
-    color: #333;
+    color: #4e73df; /* Soft blue for the heading */
     margin-left: 10px;
 }
 
@@ -67,7 +70,7 @@ nav {
 }
 
 .nav-list li a:hover {
-    background-color: #f4f4f4;
+    background-color: #e7e7e7; /* Light gray hover effect */
     border-radius: 5px;
 }
 
@@ -111,7 +114,7 @@ nav {
 
 /* Hero Section */
 #hero {
-    background-color: #4e73df;
+    background-color: #4e73df; /* Soft blue background for hero section */
     color: white;
     text-align: center;
     padding: 100px 0;
@@ -128,8 +131,8 @@ nav {
 }
 
 .cta-button {
-    background-color: #ffffff;
-    color: #4e73df;
+    background-color: #ffffff; /* White button background */
+    color: #4e73df; /* Soft blue button text */
     padding: 15px 30px;
     font-size: 1.2rem;
     border: none;
@@ -138,13 +141,13 @@ nav {
 }
 
 .cta-button:hover {
-    background-color: #f4f4f4;
+    background-color: #f4f4f4; /* Light gray hover effect for button */
 }
 
 /* History Section */
 #history {
     padding: 50px 0;
-    background-color: #ffffff;
+    background-color: #ffffff; /* White background for the history section */
 }
 
 #history h2 {
@@ -160,7 +163,7 @@ nav {
 /* Team Section */
 #team {
     padding: 50px 0;
-    background-color: #f9f9f9;
+    background-color: #f9f9f9; /* Light gray background for team section */
 }
 
 #team h2 {
@@ -194,7 +197,7 @@ nav {
 /* Services Section */
 #services {
     padding: 50px 0;
-    background-color: #ffffff;
+    background-color: #ffffff; /* White background for services section */
 }
 
 #services h2 {
@@ -213,8 +216,8 @@ nav {
 
 /* Footer Section */
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #333; /* Dark footer background */
+    color: #fff; /* White text in the footer */
     text-align: center;
     padding: 20px 0;
 }
