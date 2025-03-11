@@ -7,8 +7,8 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f4; /* Light gray background */
-    color: #333; /* Dark text color */
+    background-color: #FEF69F; /* Light yellow background */
+    color: #2E4A39; /* Dark green text color */
     line-height: 1.6;
 }
 
@@ -19,7 +19,7 @@ body {
 
 /* Header Section */
 header {
-    background-color: #ffffff; /* White background for the header */
+    background-color: #4B3EBE; /* Purple background for the header */
     padding: 10px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: sticky;
@@ -40,7 +40,7 @@ header {
 
 h1 {
     font-size: 2rem;
-    color: #4e73df; /* Soft blue for the heading */
+    color: #FEF69F; /* Light yellow for the heading */
     margin-left: 10px;
 }
 
@@ -63,14 +63,14 @@ nav {
 
 .nav-list li a {
     text-decoration: none;
-    color: #333;
+    color: #FEF69F; /* Light yellow text */
     font-weight: 700;
     padding: 10px 15px;
     transition: background-color 0.3s ease;
 }
 
 .nav-list li a:hover {
-    background-color: #e7e7e7; /* Light gray hover effect */
+    background-color: #ACC673; /* Light green hover effect */
     border-radius: 5px;
 }
 
@@ -114,8 +114,8 @@ nav {
 
 /* Hero Section */
 #hero {
-    background-color: #4e73df; /* Soft blue background for hero section */
-    color: white;
+    background-color: #4B3EBE; /* Purple background for hero section */
+    color: #FEF69F; /* Light yellow text */
     text-align: center;
     padding: 100px 0;
 }
@@ -131,8 +131,8 @@ nav {
 }
 
 .cta-button {
-    background-color: #ffffff; /* White button background */
-    color: #4e73df; /* Soft blue button text */
+    background-color: #F0827B; /* Coral button background */
+    color: #2E4A39; /* Dark green button text */
     padding: 15px 30px;
     font-size: 1.2rem;
     border: none;
@@ -141,13 +141,13 @@ nav {
 }
 
 .cta-button:hover {
-    background-color: #f4f4f4; /* Light gray hover effect for button */
+    background-color: #ACC673; /* Light green hover effect for button */
 }
 
 /* History Section */
 #history {
     padding: 50px 0;
-    background-color: #ffffff; /* White background for the history section */
+    background-color: #FEF69F; /* Light yellow background for the history section */
 }
 
 #history h2 {
@@ -163,7 +163,7 @@ nav {
 /* Team Section */
 #team {
     padding: 50px 0;
-    background-color: #f9f9f9; /* Light gray background for team section */
+    background-color: #F9F9F9; /* Light gray background for team section */
 }
 
 #team h2 {
@@ -197,7 +197,7 @@ nav {
 /* Services Section */
 #services {
     padding: 50px 0;
-    background-color: #ffffff; /* White background for services section */
+    background-color: #FEF69F; /* Light yellow background for services section */
 }
 
 #services h2 {
@@ -216,8 +216,8 @@ nav {
 
 /* Footer Section */
 footer {
-    background-color: #333; /* Dark footer background */
-    color: #fff; /* White text in the footer */
+    background-color: #2E4A39; /* Dark green footer background */
+    color: #FEF69F; /* Light yellow text in the footer */
     text-align: center;
     padding: 20px 0;
 }
