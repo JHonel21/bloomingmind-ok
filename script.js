@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const menuToggle = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
+    const header = document.querySelector('header');
+    let lastScrollTop = 0;
 
     function showNotification(message, type) {
         const notification = document.createElement('div');
@@ -69,4 +71,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
         });
     }
+
+    // Sticky Header Logic
+    window.addEventListener('scroll', function () {
+        let scrollTop = window.scrollY;
+        if (scrollTop > lastScrollTop) {
+            // Scrolling down
+            header.classList.add('sticky');
+        } else {
+            // Scrolling up
+            header.classList.remove('sticky');
+        }
+        lastScrollTop = scrollTop;
+    });
 });
