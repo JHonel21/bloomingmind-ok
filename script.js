@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const menuToggle = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
+    const contactForm = document.getElementById('contact-form'); // Ensure this exists in HTML
 
     function showNotification(message, type) {
         const notification = document.createElement('div');
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
             menuToggle.classList.toggle('active');
         });
 
-        // Close menu when clicking a link (for mobile)
+        // Close menu when clicking a link
         document.querySelectorAll('#nav-menu li a').forEach(link => {
             link.addEventListener('click', function () {
                 navMenu.classList.remove('active');
@@ -26,16 +27,16 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
-});
 
-    // Cache window width and update on resize
-    let windowWidth = window.innerWidth;
+    // Reset menu if resized to desktop view
     window.addEventListener('resize', function () {
-        windowWidth = window.innerWidth;
+        if (window.innerWidth > 768) {
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+        }
     });
 
-    // Close the navigation menu when a link is clicked (for mobile screens)
-    const navLinks = document.querySelectorAll('#nav-menu li a');
+    // Handle Contact Form Submission
     if (contactForm) {
         contactForm.addEventListener('submit', function (event) {
             event.preventDefault();
