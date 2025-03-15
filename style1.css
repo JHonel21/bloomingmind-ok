@@ -76,18 +76,14 @@ nav {
 
 /* Responsive Navigation */
 @media (max-width: 768px) {
-    /* Show menu button */
     #menu-toggle {
         display: block;
-        background: none;
-        border: none;
-        font-size: 30px;
-        cursor: pointer;
+        width: 30px;
+        height: 30px;
         position: absolute;
-        top: 15px;
+        top: 15px; /* Adjust as needed */
         right: 20px;
-        z-index: 1100;
-        color: #333;
+        cursor: pointer;
     }
 
     /* When menu is open, show 'X' instead of hamburger */
