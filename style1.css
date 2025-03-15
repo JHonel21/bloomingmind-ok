@@ -97,16 +97,15 @@ nav {
 
     .nav-list {
         display: none;
-        flex-direction: column;
         position: absolute;
-        top: 60px;
-        right: 0;
-        background: white;
-        width: 200px;
-        text-align: center;
-        padding: 10px 0;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        top: 50px; /* Position right below the hamburger */
+        right: 20px; /* Align with the hamburger */
+        background-color: white;
         border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        width: 200px;
+        z-index: 1000;
     }
 
     .nav-list.active {
@@ -120,6 +119,14 @@ nav {
     .nav-list li a {
         display: block;
         padding: 10px;
+        text-align: center;
+        color: #333;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .nav-list li a:hover {
+        background-color: #e7e7e7;
     }
 }
 
