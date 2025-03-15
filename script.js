@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const menuToggle = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
-    const contactForm = document.getElementById('contact-form'); // Ensure the form exists
 
-    // Notification function for form submission feedback
     function showNotification(message, type) {
         const notification = document.createElement('div');
         notification.className = `notification ${type}`;
@@ -29,7 +27,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Contact form submission
+    // Cache window width and update on resize
+    let windowWidth = window.innerWidth;
+    window.addEventListener('resize', function () {
+        windowWidth = window.innerWidth;
+    });
+
+    // Handle Contact Form Submission
+    const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function (event) {
             event.preventDefault();
@@ -44,13 +49,15 @@ document.addEventListener('DOMContentLoaded', function () {
             // Send the data using fetch
             fetch('/.netlify/functions/send-email', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 body: JSON.stringify(formData),
             })
                 .then(response => {
                     if (response.ok) {
                         showNotification('Message Sent Successfully!', 'success');
-                        contactForm.reset();
+                        contactForm.reset(); // Reset form after successful submission
                     } else {
                         return response.text().then(text => {
                             throw new Error(text || 'Error sending message');
