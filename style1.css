@@ -48,15 +48,64 @@ nav {
     position: relative;
 }
 
+/* Hamburger Menu Styles */
 #menu-toggle {
-    display: none;
+    display: block;
+    width: 30px;
+    height: 25px;
+    position: absolute;
+    top: 15px; /* Align with header */
+    right: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 1100; /* Ensures it's above other elements */
 }
 
+/* Hamburger Icon - Three Black Lines */
+#menu-toggle div {
+    width: 100%;
+    height: 4px;
+    background-color: black; /* Black lines */
+    position: absolute;
+    left: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Positioning the three lines */
+#menu-toggle div:nth-child(1) {
+    top: 0;
+}
+
+#menu-toggle div:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#menu-toggle div:nth-child(3) {
+    bottom: 0;
+}
+
+/* Transform into "X" when menu is active */
+#menu-toggle.active div:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+}
+
+#menu-toggle.active div:nth-child(2) {
+    opacity: 0; /* Hide middle line */
+}
+
+#menu-toggle.active div:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+/* Navigation Menu */
 .nav-list {
     display: flex;
     list-style: none;
 }
 
+/* Navigation Links */
 .nav-list li {
     margin-left: 20px;
 }
@@ -78,18 +127,13 @@ nav {
 @media (max-width: 768px) {
     #menu-toggle {
         display: block;
-        position: absolute;
-        top: 15px;  /* Adjust to align with header */
-        right: 20px;
-        cursor: pointer;
-        z-index: 1100; /* Ensures it's above other elements */
     }
 
     .nav-list {
         display: none;
         position: absolute;
-        top: 100%;  /* Positions menu right below the toggle */
-        right: 0;
+        top: 50px; /* Positions menu right below the toggle */
+        right: 20px;
         background-color: white;
         border-radius: 5px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
