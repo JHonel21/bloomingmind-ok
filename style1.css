@@ -74,41 +74,52 @@ nav {
     border-radius: 5px;
 }
 
-/* Mobile Menu */
+/* Responsive Navigation */
 @media (max-width: 768px) {
+    /* Show menu button */
     #menu-toggle {
         display: block;
-        background-color: #333;
-        width: 30px;
-        height: 3px;
+        background: none;
+        border: none;
+        font-size: 30px;
+        cursor: pointer;
         position: absolute;
-        top: 20px;
+        top: 15px;
         right: 20px;
+        z-index: 1100;
+        color: #333;
+    }
+
+    /* When menu is open, show 'X' instead of hamburger */
+    #menu-toggle.active::before {
+        content: "✖";
     }
 
     .nav-list {
         display: none;
-        position: absolute;
-        top: 50px;
-        right: 20px;
-        background-color: white;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: white;
         width: 200px;
-    }
-
-    .nav-list li {
-        margin: 0;
+        text-align: center;
+        padding: 10px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
     }
 
     .nav-list.active {
         display: flex;
     }
 
+    .nav-list li {
+        margin: 0;
+    }
+
     .nav-list li a {
+        display: block;
         padding: 10px;
-        text-align: center;
     }
 }
 
