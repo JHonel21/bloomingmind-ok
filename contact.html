@@ -45,31 +45,40 @@
     </header>
 
     <!-- Contact Section -->
-<section id="contact">
-    <div class="container">
-        <h2>Contact Us</h2>
-        <form id="contact-form" action="/.netlify/functions/send-email" method="POST">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form id="contact-form" action="/.netlify/functions/send-email" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+
+                <div class="g-recaptcha" data-sitekey="your-recaptcha-site-key"></div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <p>Email: <a href="mailto:info@bloomingmindok.com">info@bloomingmindok.com</a></p>
+                <p>Phone: 918-280-9166</p>
+                <p>Fax: 918-890-1662</p>
+                <p>Address: 715 W. Main St Ste N. Jenks, OK 74037</p>
+                <p>Location: Blooming Mind, PLLC is located on Main Street in Jenks, just north of N Elm Street in the same shopping center as Jenks Tag Agency. The office can be found in Suite N in the center ‘courtyard’ section of the shopping center.</p>
             </div>
-
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-
-            <div class="g-recaptcha" data-sitekey="your-recaptcha-site-key"></div>
-
-            <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-    </div>
-</section>
+        </div>
+    </section>
+    
     <!-- Map Section -->
     <section id="map-section">
         <div class="container">
