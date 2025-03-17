@@ -32,8 +32,8 @@ exports.handler = async (event) => {
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: "your-email@example.com", // Use your email
-    subject: `New Message from ${sanitizedName}`,
+    to: "info@bloomingmindok.com", // Updated recipient email
+    subject: `New Contact Form Submission from ${sanitizedName}`,
     text: `Name: ${sanitizedName}\nEmail: ${email}\nMessage: ${sanitizedMessage}`,
   };
 
