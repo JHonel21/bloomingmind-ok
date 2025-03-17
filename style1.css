@@ -44,7 +44,7 @@ nav {
 
 /* Hamburger Menu Styles */
 #menu-toggle {
-    display: block;
+    display: none; /* Hide by default */
     width: 30px;
     height: 25px;
     position: absolute;
@@ -120,7 +120,7 @@ nav {
 /* Responsive Navigation */
 @media (max-width: 768px) {
     #menu-toggle {
-        display: block;
+        display: block; /* Show only on mobile */
     }
 
     .nav-list {
