@@ -160,6 +160,7 @@ nav {
 
 /* Hero Section */
 #hero {
+    background: url('Blooming Mind hero.jpg') no-repeat center center/cover;
     color: white;
     text-align: center;
     padding: 100px 0;
