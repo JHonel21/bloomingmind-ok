@@ -32,7 +32,7 @@ exports.handler = async (event) => {
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: "info@bloomingmindok.com", // Updated recipient email
+    to: "info@bloomingmindok.com",
     subject: `New Contact Form Submission from ${sanitizedName}`,
     text: `Name: ${sanitizedName}\nEmail: ${email}\nMessage: ${sanitizedMessage}`,
   };
