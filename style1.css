@@ -338,3 +338,18 @@ footer .social-media a:hover {
         font-size: 1rem;
     }
 }
+
+/* footer styles */
+footer .footer-links {
+    margin-top: 10px;
+}
+
+footer .footer-links a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+footer .footer-links a:hover {
+    text-decoration: underline;
+}
