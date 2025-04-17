@@ -3,5 +3,5 @@
   functions = "netlify/functions"
   command = ""
 
-[plugins]
-  package = "@netlify/plugin-emails"
+[[plugins]]
+package = "@netlify/plugin-emails"
