@@ -1,10 +1,7 @@
 [build]
   publish = "public"
-  command = "npm run build"
+  functions = "netlify/functions"
+  command = ""
 
-[functions]
-  directory = "netlify/functions"
-
-[dev]
-  command = "npm run dev"
-  port = 8888
+[plugins]
+  package = "@netlify/plugin-emails"
