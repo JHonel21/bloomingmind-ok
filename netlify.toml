@@ -1,5 +1,5 @@
 [build]
-  publish = "." # Root directory
+  publish = "public" # Root directory
   functions = "netlify/functions"
   command = ""
 
