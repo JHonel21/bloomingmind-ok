@@ -350,74 +350,53 @@ footer .footer-links a:hover {
     text-decoration: underline;
 }
 
-/* Meet Our Team Section */
-#team-container {
-    width: 100%;
-    max-width: 1200px; /* Maximum width for desktop */
-    margin: 0 auto;
-    padding: 20px;
-}
-
-#team-content {
+/* Team Section */
+.team-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
+    gap: 40px;
+    justify-content: center;
+    padding: 60px 20px;
+    background-color: #ffffff;
 }
 
-#team-content .team-member {
-    flex: 1;
-    max-width: 300px; /* Limit the width of each team member card */
-    text-align: center;
-    background-color: #fff; /* Optional background for team member */
-    padding: 20px;
+.team-member {
+    background-color: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-#team-content .team-member img {
-    width: 100%;
-    height: auto;
-    max-width: 200px; /* Set a max width for the images */
+.team-member img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
     border-radius: 50%;
     margin-bottom: 15px;
+    border: 3px solid #ACC673;
 }
 
-#team-content .team-member h3 {
-    font-size: 1.5rem;
+.team-member h3 {
+    font-size: 1.4rem;
     margin-bottom: 10px;
+    color: #2E4A39;
 }
 
-#team-content .team-member p {
+.team-member p {
     font-size: 1rem;
     color: #666;
 }
 
-/* Mobile Styles */
 @media (max-width: 768px) {
-    #team-container {
-        padding: 15px;
+    .team-container {
+        flex-direction: column;
+        align-items: center;
     }
 
-    #team-content {
-        flex-direction: column; /* Stack team members vertically on mobile */
-        align-items: center; /* Center the team member cards */
-    }
-
-    #team-content .team-member {
-        max-width: 100%; /* Make the team member cards full width */
-        margin-bottom: 20px; /* Add some spacing between stacked members */
-    }
-
-    #team-content .team-member img {
-        max-width: 150px; /* Adjust image size for mobile */
-    }
-
-    #team-content .team-member h3 {
-        font-size: 1.2rem;
-    }
-
-    #team-content .team-member p {
-        font-size: 0.9rem;
+    .team-member {
+        width: 90%;
+        max-width: 350px;
     }
 }
