@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (menuToggle && navMenu) {
+        // Toggle the menu visibility on mobile
         menuToggle.addEventListener('click', function () {
             navMenu.classList.toggle('active');
             menuToggle.classList.toggle('active');
@@ -83,5 +84,20 @@ document.addEventListener('DOMContentLoaded', function () {
             header.classList.remove('sticky');
         }
         lastScrollTop = scrollTop;
+    });
+
+    // Add smooth scrolling effect to anchor links (e.g., for About and Services sections)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80, // Adjust to allow for header
+                    behavior: 'smooth',
+                });
+            }
+        });
     });
 });
