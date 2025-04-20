@@ -354,7 +354,7 @@ footer .footer-links a:hover {
 .team-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 30px; /* Adjust gap between items */
     justify-content: center;
     padding: 60px 20px;
     background-color: #ffffff;
@@ -364,7 +364,7 @@ footer .footer-links a:hover {
     background-color: #f9f9f9;
     border-radius: 10px;
     padding: 20px;
-    width: 280px;
+    width: 320px; /* Increased width */
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
@@ -391,12 +391,12 @@ footer .footer-links a:hover {
 
 @media (max-width: 768px) {
     .team-container {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row; /* Keep items in a row */
+        justify-content: space-between; /* Spread out team members */
     }
 
     .team-member {
-        width: 90%;
+        width: 48%; /* Adjust width for better use of space */
         max-width: 350px;
     }
 }
