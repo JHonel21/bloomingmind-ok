@@ -119,38 +119,45 @@ nav {
         display: block;
     }
 
+    .header-container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
     .nav-list {
-        display: none;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
         position: absolute;
-        top: 50px;
-        right: 20px;
+        top: 100%;
+        right: 0;
         background-color: white;
         border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        flex-direction: column;
-        width: 200px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        padding: 1rem;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
         z-index: 1000;
     }
 
     .nav-list.active {
-        display: flex;
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .nav-list li {
         width: 100%;
+        margin: 10px 0;
     }
 
     .nav-list li a {
+        width: 100%;
         display: block;
+        text-align: left;
         padding: 10px;
-        text-align: center;
-        color: #333;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    .nav-list li a:hover {
-        background-color: #e7e7e7;
     }
 }
 
@@ -310,23 +317,9 @@ footer .social-media a:hover {
         padding: 20px 0;
     }
 
-    .header-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
     .logo {
         width: 100px;
         height: auto;
-    }
-
-    .nav-list {
-        flex-direction: column;
-        padding-top: 20px;
-    }
-
-    .nav-list li {
-        margin-bottom: 10px;
     }
 
     .cta-button {
@@ -335,7 +328,7 @@ footer .social-media a:hover {
     }
 }
 
-/* footer styles */
+/* Footer Styles */
 footer .footer-links {
     margin-top: 10px;
 }
@@ -354,7 +347,7 @@ footer .footer-links a:hover {
 .team-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px; /* Adjust gap between items */
+    gap: 30px;
     justify-content: center;
     padding: 60px 20px;
     background-color: #ffffff;
@@ -364,7 +357,7 @@ footer .footer-links a:hover {
     background-color: #f9f9f9;
     border-radius: 10px;
     padding: 20px;
-    width: 768px; /* Increased width */
+    width: 768px;
     text-align: left;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
@@ -391,12 +384,12 @@ footer .footer-links a:hover {
 
 @media (max-width: 768px) {
     .team-container {
-        flex-direction: row; /* Keep items in a row */
-        justify-content: space-between; /* Spread out team members */
+        flex-direction: row;
+        justify-content: space-between;
     }
 
     .team-member {
-        width: 100%; /* Adjust width for better use of space */
+        width: 100%;
         max-width: 768px;
     }
 }
