@@ -121,8 +121,6 @@ nav {
 
     .nav-list.active {
         display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
     .nav-list li {
@@ -159,6 +157,7 @@ nav {
         max-width: 200px;
     }
 }
+
 
 /* Hero Section */
 #hero {
