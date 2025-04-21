@@ -81,7 +81,6 @@ nav {
 .nav-list {
     display: flex;
     list-style: none;
-    left: auto;
 }
 
 .nav-list li {
@@ -112,6 +111,7 @@ nav {
         position: absolute;
         top: 60px;
         right: 20px;
+        left: auto;
         background-color: white;
         border-radius: 5px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
