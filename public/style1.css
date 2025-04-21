@@ -304,37 +304,6 @@ footer .social-media a:hover {
     background-color: #f44336;
 }
 
-/* Additional Mobile Adjustments */
-@media (max-width: 768px) {
-    header {
-        padding: 20px 0;
-    }
-
-    .header-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .logo {
-        width: 100px;
-        height: auto;
-    }
-
-    .nav-list {
-        flex-direction: column;
-        padding-top: 20px;
-    }
-
-    .nav-list li {
-        margin-bottom: 10px;
-    }
-
-    .cta-button {
-        padding: 12px 25px;
-        font-size: 1rem;
-    }
-}
-
 /* footer styles */
 footer .footer-links {
     margin-top: 10px;
@@ -354,7 +323,7 @@ footer .footer-links a:hover {
 .team-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px; /* Adjust gap between items */
+    gap: 30px;
     justify-content: center;
     padding: 60px 20px;
     background-color: #ffffff;
@@ -389,14 +358,94 @@ footer .footer-links a:hover {
     color: #666;
 }
 
+/* Global Map Styles */
+#map {
+    width: 100%;
+    height: 500px;
+}
+
+/* Leaflet Popup Styles */
+.leaflet-popup-content {
+    font-size: 14px;
+    line-height: 1.4;
+    max-width: 220px;
+    padding: 5px;
+}
+
+.leaflet-popup-content-wrapper {
+    padding: 10px;
+}
+
+.leaflet-popup-content a {
+    display: inline-block;
+    margin-top: 8px;
+    color: #4B3EBE;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.leaflet-popup-content a.button-link {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #4B3EBE;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.leaflet-popup-content a.button-link:hover {
+    background-color: #372fab;
+}
+
+/* Additional Mobile Adjustments */
 @media (max-width: 768px) {
+    header {
+        padding: 20px 0;
+    }
+
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo {
+        width: 100px;
+        height: auto;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        padding-top: 20px;
+    }
+
+    .nav-list li {
+        margin-bottom: 10px;
+    }
+
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
     .team-container {
-        flex-direction: row; /* Keep items in a row */
-        justify-content: space-between; /* Spread out team members */
+        flex-direction: row;
+        justify-content: space-between;
     }
 
     .team-member {
-        width: fit-content; /* Adjust width for better use of space */
+        width: fit-content;
         max-width: 768px;
+    }
+
+    #map {
+        height: 300px;
+    }
+
+    .leaflet-popup-content {
+        font-size: 13px;
+        max-width: 200px;
     }
 }

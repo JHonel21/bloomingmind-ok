@@ -125,7 +125,7 @@
 
     <script>
         // Initialize Leaflet map
-        const map = L.map('map').setView([36.0233620, -95.9782181], 13);
+        const map = L.map('map').setView([36.0233620, -95.9782181], 15);
 
         // Add OpenStreetMap tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -134,9 +134,20 @@
 
         // Add a marker for your location
         L.marker([36.0233620, -95.9782181])
-            .addTo(map)
-            .bindPopup('<b>Blooming Mind</b><br>715 W. Main St Ste N. Jenks, OK 74037')
-            .openPopup();
+          .addTo(map)
+          .bindPopup(`
+            <div style="font-size: 14px; line-height: 1.4; max-width: 220px;">
+              <strong>Blooming Mind</strong><br>
+              715 W. Main St Ste N<br>Jenks, OK 74037<br>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=715+W+Main+St+Ste+N+Jenks+OK+74037"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="color: #4B3EBE; text-decoration: underline; display: inline-block; margin-top: 5px;">
+                📍 Get Directions
+              </a>
+            </div>
+          `)
+          .openPopup();
     </script>
     <script src="./src/script.js"></script>
 </body>
