@@ -50,7 +50,11 @@
     <section id="contact">
         <div class="container">
           <h2>Contact Us</h2>
-          <form id="contact-form" action="/netlify/functions/send-email" method="POST" data-netlify="true">
+          <!-- Netlify form handling -->
+          <form id="contact-form" method="POST" data-netlify="true">
+            <!-- Hidden field to specify the form name -->
+            <input type="hidden" name="form-name" value="contact">
+            
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" required>
