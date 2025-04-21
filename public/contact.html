@@ -50,9 +50,10 @@
     <section id="contact">
         <div class="container">
           <h2>Contact Us</h2>
-          <form name="contact" netlify id="contact-form" method="POST" data-netlify="true">
+          <form name="contact" netlify id="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="text" name="bot-field" style="display:none">
             <input type="hidden" name="form-name" value="contact">
-            
+            <input type="hidden" name="subject" id="form-subject" value="">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" required>
@@ -158,6 +159,18 @@
           `)
           .openPopup();
     </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const subjectField = document.getElementById('form-subject');
+        const nameField = document.getElementById('name');
+    
+        nameField.addEventListener('input', function () {
+          const name = nameField.value.trim() || 'Anonymous';
+          const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+          subjectField.value = `New Contact Form Submission from ${name} - ${today}`;
+        });
+      });
+    </script>    
     <script src="./src/script.js"></script>
 </body>
 </html>
