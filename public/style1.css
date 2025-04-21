@@ -134,6 +134,8 @@ nav {
 
     .nav-list.active {
         display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .nav-list li {

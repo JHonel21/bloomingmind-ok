@@ -1,6 +1,7 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "Blooming Mind OK",
+  "short_name": "Blooming Mind",
+  "description": "Blooming Mind OK is a mental health and wellness app that provides resources, tools, and support for individuals seeking to improve their mental well-being.",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
