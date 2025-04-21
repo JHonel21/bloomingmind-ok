@@ -396,7 +396,7 @@ footer .footer-links a:hover {
     }
 
     .team-member {
-        width: 100%; /* Adjust width for better use of space */
+        width: fit-content; /* Adjust width for better use of space */
         max-width: 768px;
     }
 }
