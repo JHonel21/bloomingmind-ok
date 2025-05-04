@@ -1,176 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="author" content="Blooming Mind">
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="Blooming Mind">
-    <meta name="application-name" content="Blooming Mind">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-navbutton-color" content="#ffffff">
-    <meta name="msapplication-TileImage" content="mstile-144x144.png">
-    <meta name="msapplication-square70x70logo" content="mstile-70x70.png">
-    <meta name="msapplication-square150x150logo" content="mstile-150x150.png">
-    <meta name="msapplication-wide310x150logo" content="mstile-310x150.png">
-    <meta name="msapplication-square310x310logo" content="mstile-310x310.png">
-    <meta name="description" content="Learn more about Blooming Mind and our team.">
-    <meta name="keywords" content="about, counseling, team, therapy">
-    <title>Contact Us - Blooming Mind</title>
-    <link rel="stylesheet" href="style1.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" />
-    <script src="https://unpkg.com/leaflet-gesture-handling"></script>
-</head>
-<body>
-  <header>
-    <div class="container header-container">
-        <a href="https://www.bloomingmindok.com/">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <meta name="author" content="Blooming Mind">
+      <meta name="robots" content="index, follow">
+      <meta name="googlebot" content="index, follow">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="theme-color" content="#ffffff">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-title" content="Blooming Mind">
+      <meta name="application-name" content="Blooming Mind">
+      <meta name="msapplication-TileColor" content="#ffffff">
+      <meta name="msapplication-navbutton-color" content="#ffffff">
+      <meta name="msapplication-TileImage" content="mstile-144x144.png">
+      <meta name="msapplication-square70x70logo" content="mstile-70x70.png">
+      <meta name="msapplication-square150x150logo" content="mstile-150x150.png">
+      <meta name="msapplication-wide310x150logo" content="mstile-310x150.png">
+      <meta name="msapplication-square310x310logo" content="mstile-310x310.png">
+      <meta name="description" content="Learn more about Blooming Mind and our team.">
+      <meta name="keywords" content="about, counseling, team, therapy">
+      <title>Contact Us - Blooming Mind</title>
+      <link rel="stylesheet" href="style1.css">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+      <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" />
+      <script src="https://unpkg.com/leaflet-gesture-handling"></script>
+   </head>
+   <body>
+      <header>
+         <div class="container header-container">
+            <a href="https://www.bloomingmindok.com/">
             <img src="Blooming Mind compressed.jpg" alt="Home Page | Blooming Mind OK" class="logo">
-        </a>
-        <button id="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
-        <nav>
-            <ul id="nav-menu" class="nav-list">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="https://bloomingmindok.sessionshealth.com/" target="_blank" rel="noopener noreferrer">Current Clients</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-    <section id="contact">
-        <div class="container">
-          <h2>Contact Us</h2>
-          <form name="contact" netlify id="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="text" name="bot-field" style="display:none">
-            <input type="hidden" name="form-name" value="contact">
-            <input type="hidden" name="subject" id="form-subject" value="">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" required>
+            </a>
+            <button id="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+            <nav>
+               <ul id="nav-menu" class="nav-list">
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="services.html">Services</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                  <li><a href="https://bloomingmindok.sessionshealth.com/" target="_blank" rel="noopener noreferrer">Current Clients</a></li>
+               </ul>
+            </nav>
+         </div>
+      </header>
+      <section id="contact">
+         <div class="container">
+            <h2>Contact Us</h2>
+            <form name="contact" netlify id="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+               <input type="text" name="bot-field" style="display:none">
+               <input type="hidden" name="form-name" value="contact">
+               <input type="hidden" name="subject" id="form-subject" value="">
+               <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" required>
+               </div>
+               <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" required>
+               </div>
+               <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" rows="5" required></textarea>
+               </div>
+               <div class="form-group">
+                  <label class="checkbox-label">
+                  <input type="checkbox" id="privacy-policy" required>
+                  I agree to the <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
+                  </label>
+               </div>
+               <div class="form-group">
+                  <label class="checkbox-label">
+                  <input type="checkbox" id="terms-conditions" required>
+                  I agree to the <a href="terms-conditions.html" target="_blank">Terms and Conditions</a>
+                  </label>
+               </div>
+               <div class="form-group">
+                  <div class="g-recaptcha" data-sitekey="your-recaptcha-site-key"></div>
+               </div>
+               <div class="form-group">
+                  <button type="submit" class="submit-btn">Send Message</button>
+               </div>
+               <div class="form-group">
+                  <div id="form-response"></div>
+               </div>
+            </form>
+            <div class="contact-info">
+               <h3>Contact Information</h3>
+               <p>Email: <a href="mailto:info@bloomingmindok.com">info@bloomingmindok.com</a></p>
+               <p>Phone: 918-280-9166</p>
+               <p>Fax: 918-890-1662</p>
             </div>
-      
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required>
-            </div>
-      
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-      
-            <div class="form-group">
-              <label class="checkbox-label">
-                <input type="checkbox" id="privacy-policy" required>
-                I agree to the <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
-              </label>
-            </div>
-      
-            <div class="form-group">
-              <label class="checkbox-label">
-                <input type="checkbox" id="terms-conditions" required>
-                I agree to the <a href="terms-conditions.html" target="_blank">Terms and Conditions</a>
-              </label>
-            </div>
-      
-            <div class="form-group">
-              <div class="g-recaptcha" data-sitekey="your-recaptcha-site-key"></div>
-            </div>
-      
-            <div class="form-group">
-              <button type="submit" class="submit-btn">Send Message</button>
-            </div>
-      
-            <div class="form-group">
-              <div id="form-response"></div>
-            </div>
-          </form>
-      
-          <div class="contact-info">
-            <h3>Contact Information</h3>
-            <p>Email: <a href="mailto:info@bloomingmindok.com">info@bloomingmindok.com</a></p>
-            <p>Phone: 918-280-9166</p>
-            <p>Fax: 918-890-1662</p>
-          </div>
-        </div>
-      </section>      
-
-    <!-- Map Section -->
-    <section id="map-section">
-        <div class="container">
+         </div>
+      </section>
+      <!-- Map Section -->
+      <section id="map-section">
+         <div class="container">
             <h3>Location</h3>
             <p>Address: 715 W. Main St Ste N. Jenks, OK 74037</p>
             <p>Location: Blooming Mind, PLLC is located on Main Street in Jenks, just north of N Elm Street in the same shopping center as Jenks Tag Agency. The office can be found in Suite N in the center ‘courtyard’ section of the shopping center.</p>
             <div id="map" style="width: 100%; height: 450px;"></div>
-        </div>
-    </section>
-    
-    <footer>
-            <div class="container">
-                <p>&copy; 2025 Blooming Mind PLLC. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="terms-conditions.html">Terms & Conditions</a>
-                    <a href="privacy-policy.html">Privacy Policy</a>
-                </div>
-                <div class="social-media">
-                    <a href="https://www.facebook.com/p/Blooming-Mind-PLLC-100090840948619/">Facebook</a>
-                </div>
+         </div>
+      </section>
+      <footer>
+         <div class="container">
+            <p>&copy; 2025 Blooming Mind PLLC. All rights reserved.</p>
+            <div class="footer-links">
+               <a href="terms-conditions.html">Terms & Conditions</a>
+               <a href="privacy-policy.html">Privacy Policy</a>
             </div>
-        </footer>
-
-    <script>
-        // Initialize Leaflet map
-        const map = L.map('map', {
-          center: [36.0233620, -95.9782181],
-          zoom: 15,
-          gestureHandling: true
-        });
-
-
-        // Add OpenStreetMap tiles
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        // Add a marker for your location
-        L.marker([36.0233620, -95.9782181])
-          .addTo(map)
-          .bindPopup(`
-            <div style="font-size: 14px; line-height: 1.4; max-width: 220px;">
-              <strong>Blooming Mind</strong><br>
-              715 W. Main St Ste N<br>Jenks, OK 74037<br>
-              <a href="https://www.google.com/maps/dir/?api=1&destination=715+W+Main+St+Ste+N+Jenks+OK+74037"
-                target="_blank"
-                rel="noopener noreferrer"
-                style="color: #4B3EBE; text-decoration: underline; display: inline-block; margin-top: 5px;">
-                📍 Get Directions
-              </a>
+            <div class="social-media">
+               <a href="https://www.facebook.com/p/Blooming-Mind-PLLC-100090840948619/">Facebook</a>
             </div>
-          `)
-          .openPopup();
-    </script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const subjectField = document.getElementById('form-subject');
-        const nameField = document.getElementById('name');
-    
-        nameField.addEventListener('input', function () {
-          const name = nameField.value.trim() || 'Anonymous';
-          const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
-          subjectField.value = `New Contact Form Submission from ${name} - ${today}`;
-        });
-      });
-    </script>    
-    <script src="script.js"></script>
-</body>
+         </div>
+      </footer>
+      <script>
+         // Initialize Leaflet map
+         const map = L.map('map', {
+           center: [36.0233620, -95.9782181],
+           zoom: 15,
+           gestureHandling: true
+         });
+         
+         
+         // Add OpenStreetMap tiles
+         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+         }).addTo(map);
+         
+         // Add a marker for your location
+         L.marker([36.0233620, -95.9782181])
+           .addTo(map)
+           .bindPopup(`
+             <div style="font-size: 14px; line-height: 1.4; max-width: 220px;">
+               <strong>Blooming Mind</strong><br>
+               715 W. Main St Ste N<br>Jenks, OK 74037<br>
+               <a href="https://www.google.com/maps/dir/?api=1&destination=715+W+Main+St+Ste+N+Jenks+OK+74037"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 style="color: #4B3EBE; text-decoration: underline; display: inline-block; margin-top: 5px;">
+                 📍 Get Directions
+               </a>
+             </div>
+           `)
+           .openPopup();
+      </script>
+      <script>
+         document.addEventListener('DOMContentLoaded', function () {
+           const subjectField = document.getElementById('form-subject');
+           const nameField = document.getElementById('name');
+         
+           nameField.addEventListener('input', function () {
+             const name = nameField.value.trim() || 'Anonymous';
+             const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+             subjectField.value = `New Contact Form Submission from ${name} - ${today}`;
+           });
+         });
+      </script>    
+      <script src="script.js"></script>
+   </body>
 </html>
