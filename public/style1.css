@@ -119,10 +119,11 @@ nav {
         display: block;
     }
 
-    .nav-list {
-        display: none;
+    #nav-menu {
+        max-height: 0;             /* start collapsed */
+        overflow: hidden;          /* hide content when collapsed */
         position: absolute;
-        top: 50px;
+        top: 50px;                 /* adjust for icon height */
         right: 20px;
         background-color: white;
         border-radius: 5px;
@@ -130,18 +131,20 @@ nav {
         flex-direction: column;
         width: 200px;
         z-index: 1000;
-        transition: all 0.3s ease;
+        transition: max-height 0.4s ease, opacity 0.4s ease;
+        opacity: 0;
     }
 
-    .nav-list.active {
-        display: flex;
+    #nav-menu.active {
+        max-height: 500px;         /* enough to show all links */
+        opacity: 1;
     }
 
-    .nav-list li {
+    #nav-menu li {
         width: 100%;
     }
 
-    .nav-list li a {
+    #nav-menu li a {
         display: block;
         text-align: center;
         padding: 10px;
