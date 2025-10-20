@@ -375,3 +375,140 @@ footer .footer-links a:hover {
 .notification.error {
     background-color: #f44336;
 }
+
+/* ===========================
+   Contact Form Styling
+=========================== */
+#contact {
+    background-color: #ffffff;
+    padding: 60px 0;
+}
+
+#contact h2 {
+    text-align: center;
+    color: #2E4A39;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+}
+
+/* Form Container */
+#contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fefefe;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    color: #2E4A39;
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid #ACC673;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-family: inherit;
+    resize: vertical;
+    background-color: #FEF69F10;
+}
+
+input:hover,
+textarea:hover {
+    border-color: #F0827B;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #4B3EBE;
+    box-shadow: 0 0 5px rgba(75, 62, 190, 0.3);
+    outline: none;
+}
+
+/* Checkboxes */
+.checkbox-label {
+    font-size: 0.95rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.4;
+}
+
+.checkbox-label a {
+    color: #4B3EBE;
+    text-decoration: underline;
+}
+
+.checkbox-label input {
+    accent-color: #4B3EBE;
+    transform: scale(1.2);
+}
+
+/* Submit Button */
+.submit-btn {
+    background-color: #4B3EBE;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #372fab;
+    transform: translateY(-1px);
+}
+
+/* Contact Info */
+.contact-info {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.contact-info h3 {
+    color: #2E4A39;
+    margin-bottom: 10px;
+}
+
+.contact-info p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.contact-info a {
+    color: #4B3EBE;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    #contact-form {
+        padding: 20px;
+    }
+    #contact h2 {
+        font-size: 1.8rem;
+    }
+}
