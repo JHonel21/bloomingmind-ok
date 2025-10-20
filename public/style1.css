@@ -119,24 +119,23 @@ nav {
         display: block;
     }
 
+    /* Make menu push page down instead of overlay */
     #nav-menu {
-        max-height: 0;             /* start collapsed */
-        overflow: hidden;          /* hide content when collapsed */
-        position: absolute;
-        top: 50px;                 /* adjust for icon height */
-        right: 20px;
+        max-height: 0;
+        overflow: hidden;
+        position: relative;      /* changed from absolute */
+        top: 0;
+        left: 0;
+        width: 100%;             /* full width */
         background-color: white;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         flex-direction: column;
-        width: 200px;
         z-index: 1000;
         transition: max-height 0.4s ease, opacity 0.4s ease;
         opacity: 0;
     }
 
     #nav-menu.active {
-        max-height: 500px;         /* enough to show all links */
+        max-height: 1000px;      /* enough to show all links */
         opacity: 1;
     }
 
@@ -147,14 +146,15 @@ nav {
     #nav-menu li a {
         display: block;
         text-align: center;
-        padding: 10px;
+        padding: 15px;
+        font-size: 1.1rem;
     }
 
     .header-container {
         flex-direction: column;
         align-items: center;
     }
-
+    
     .team-container {
         flex-direction: row;
         justify-content: space-between;
