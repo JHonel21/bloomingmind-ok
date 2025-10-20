@@ -32,7 +32,7 @@
       <header>
          <div class="container header-container">
             <a href="https://www.bloomingmindok.com/">
-            <img src="Blooming Mind compressed.avif" alt="Home Page | Blooming Mind OK" class="logo">
+               <img src="Blooming Mind compressed.avif" alt="Home Page | Blooming Mind OK" class="logo">
             </a>
             <button id="menu-toggle" aria-label="Toggle navigation">
                <span></span>
@@ -50,55 +50,73 @@
             </nav>
          </div>
       </header>
+
+      <!-- Contact Section -->
       <section id="contact">
          <div class="container">
             <h2>Contact Us</h2>
-            <form name="contact" netlify id="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-               <input type="text" name="bot-field" style="display:none">
+
+            <!-- Contact Form -->
+            <form name="contact" id="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+               <input type="hidden" name="bot-field" style="display:none">
                <input type="hidden" name="form-name" value="contact">
                <input type="hidden" name="subject" id="form-subject" value="">
+
                <div class="form-group">
                   <label for="name">Name</label>
                   <input type="text" id="name" name="name" required>
                </div>
+
                <div class="form-group">
                   <label for="email">Email</label>
                   <input type="email" id="email" name="email" required>
                </div>
+
                <div class="form-group">
                   <label for="message">Message</label>
                   <textarea id="message" name="message" rows="5" required></textarea>
                </div>
+
                <div class="form-group">
                   <label class="checkbox-label">
-                  <input type="checkbox" id="privacy-policy" required>
-                  I agree to the <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
+                     <input type="checkbox" id="privacy-policy" required>
+                     I agree to the <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
                   </label>
                </div>
+
                <div class="form-group">
                   <label class="checkbox-label">
-                  <input type="checkbox" id="terms-conditions" required>
-                  I agree to the <a href="terms-conditions.html" target="_blank">Terms and Conditions</a>
+                     <input type="checkbox" id="terms-conditions" required>
+                     I agree to the <a href="terms-conditions.html" target="_blank">Terms and Conditions</a>
                   </label>
                </div>
+
                <div class="form-group">
                   <div class="g-recaptcha" data-sitekey="your-recaptcha-site-key"></div>
                </div>
+
                <div class="form-group">
                   <button type="submit" class="submit-btn">Send Message</button>
                </div>
+
                <div class="form-group">
                   <div id="form-response"></div>
                </div>
             </form>
-            <div class="contact-info">
-               <h3>Contact Information</h3>
-               <p>Email: <a href="mailto:info@bloomingmindok.com">info@bloomingmindok.com</a></p>
-               <p>Phone: 918-280-9166</p>
-               <p>Fax: 918-890-1662</p>
-            </div>
+
+            <!-- Contact Info -->
+            <section id="contact-info-section">
+               <div class="contact-info">
+                  <h3>Contact Information</h3>
+                  <p><span class="info-icon">📧</span> <a href="mailto:info@bloomingmindok.com">info@bloomingmindok.com</a></p>
+                  <p><span class="info-icon">📞</span> 918-280-9166</p>
+                  <p><span class="info-icon">📠</span> 918-890-1662</p>
+               </div>
+            </section>
+
          </div>
       </section>
+
       <!-- Map Section -->
       <section id="map-section">
          <div class="container">
@@ -108,6 +126,7 @@
             <div id="map" style="width: 100%; height: 450px;"></div>
          </div>
       </section>
+
       <footer>
          <div class="container">
             <p>&copy; 2025 Blooming Mind PLLC. All rights reserved.</p>
@@ -121,21 +140,19 @@
             </div>
          </div>
       </footer>
+
       <script>
-         // Initialize Leaflet map
+         // Leaflet Map
          const map = L.map('map', {
            center: [36.0233620, -95.9782181],
            zoom: 15,
            gestureHandling: true
          });
-         
-         
-         // Add OpenStreetMap tiles
+
          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
          }).addTo(map);
-         
-         // Add a marker for your location
+
          L.marker([36.0233620, -95.9782181])
            .addTo(map)
            .bindPopup(`
@@ -151,15 +168,15 @@
              </div>
            `)
            .openPopup();
-      </script>
-      <script>
+
+         // Form Subject Auto-fill
          document.addEventListener('DOMContentLoaded', function () {
            const subjectField = document.getElementById('form-subject');
            const nameField = document.getElementById('name');
          
            nameField.addEventListener('input', function () {
              const name = nameField.value.trim() || 'Anonymous';
-             const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+             const today = new Date().toISOString().split('T')[0];
              subjectField.value = `New Contact Form Submission from ${name} - ${today}`;
            });
          });
