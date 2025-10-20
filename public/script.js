@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (menuToggle && navMenu) {
-        // Toggle the menu visibility on mobile
+        // Toggle menu visibility and hamburger X animation
         menuToggle.addEventListener('click', function () {
             navMenu.classList.toggle('active');
             menuToggle.classList.toggle('active');
@@ -36,31 +36,27 @@ document.addEventListener('DOMContentLoaded', function () {
         windowWidth = window.innerWidth;
     });
 
-    // Handle Contact Form Submission
+    // Contact Form Submission
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function (event) {
             event.preventDefault();
 
-            // Gather form data
             const formData = {
                 name: contactForm.elements['name'].value,
                 email: contactForm.elements['email'].value,
                 message: contactForm.elements['message'].value,
             };
 
-            // Send the data using fetch
             fetch('/.netlify/functions/send-email', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
             })
                 .then(response => {
                     if (response.ok) {
                         showNotification('Message Sent Successfully!', 'success');
-                        contactForm.reset(); // Reset form after successful submission
+                        contactForm.reset();
                     } else {
                         return response.text().then(text => {
                             throw new Error(text || 'Error sending message');
@@ -73,20 +69,18 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Sticky Header Logic
+    // Sticky Header
     window.addEventListener('scroll', function () {
         let scrollTop = window.scrollY;
         if (scrollTop > lastScrollTop) {
-            // Scrolling down
             header.classList.add('sticky');
         } else {
-            // Scrolling up
             header.classList.remove('sticky');
         }
         lastScrollTop = scrollTop;
     });
 
-    // Add smooth scrolling effect to anchor links (e.g., for About and Services sections)
+    // Smooth anchor scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -94,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const targetElement = document.getElementById(targetId);
             if (targetElement) {
                 window.scrollTo({
-                    top: targetElement.offsetTop - 80, // Adjust to allow for header
+                    top: targetElement.offsetTop - 80,
                     behavior: 'smooth',
                 });
             }
