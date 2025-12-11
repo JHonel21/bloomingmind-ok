@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () { 
     const menuToggle = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
     const header = document.querySelector('header');
@@ -46,6 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 name: contactForm.elements['name'].value,
                 email: contactForm.elements['email'].value,
                 message: contactForm.elements['message'].value,
+                // Include insurance fields in submission
+                hasInsurance: contactForm.elements['has-insurance'].value,
+                insuranceProvider: contactForm.elements['insurance-provider'].value
             };
 
             fetch('/.netlify/functions/send-email', {
@@ -57,6 +60,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (response.ok) {
                         showNotification('Message Sent Successfully!', 'success');
                         contactForm.reset();
+                        // Hide insurance provider field again after reset
+                        const insuranceField = document.getElementById('insurance-provider');
+                        if (insuranceField) {
+                            insuranceField.parentElement.style.display = 'none';
+                        }
                     } else {
                         return response.text().then(text => {
                             throw new Error(text || 'Error sending message');
@@ -94,4 +102,20 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+    // Show/hide insurance provider field based on dropdown
+    const insuranceSelect = document.getElementById('has-insurance');
+    const insuranceField = document.getElementById('insurance-provider');
+    if (insuranceSelect && insuranceField) {
+        // Hide the insurance field initially
+        insuranceField.parentElement.style.display = 'none';
+
+        // Show/hide based on dropdown selection
+        insuranceSelect.addEventListener('change', function () {
+            if (insuranceSelect.value === 'Yes') {
+                insuranceField.parentElement.style.display = 'block';
+            } else {
+                insuranceField.parentElement.style.display = 'none';
+            }
+        });
+    }
 });
