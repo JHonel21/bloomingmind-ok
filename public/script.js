@@ -60,10 +60,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (response.ok) {
                         showNotification('Message Sent Successfully!', 'success');
                         contactForm.reset();
-                        // Hide insurance provider field again after reset
+                        // Hide insurance provider field and remove required after reset
                         const insuranceField = document.getElementById('insurance-provider');
                         if (insuranceField) {
                             insuranceField.parentElement.style.display = 'none';
+                            insuranceField.required = false;
                         }
                     } else {
                         return response.text().then(text => {
@@ -102,19 +103,23 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
     // Show/hide insurance provider field based on dropdown
     const insuranceSelect = document.getElementById('has-insurance');
     const insuranceField = document.getElementById('insurance-provider');
     if (insuranceSelect && insuranceField) {
         // Hide the insurance field initially
         insuranceField.parentElement.style.display = 'none';
+        insuranceField.required = false;
 
         // Show/hide based on dropdown selection
         insuranceSelect.addEventListener('change', function () {
             if (insuranceSelect.value === 'Yes') {
                 insuranceField.parentElement.style.display = 'block';
+                insuranceField.required = true; // make required when shown
             } else {
                 insuranceField.parentElement.style.display = 'none';
+                insuranceField.required = false; // remove required when hidden
             }
         });
     }
