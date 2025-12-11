@@ -7,10 +7,10 @@ exports.handler = async (event) => {
   }
 
   const formData = JSON.parse(event.body);
-  const { name, email, message } = formData;
+  const { name, email, message, hasInsurance, insuranceProvider } = formData;
 
-  if (!name || !email || !message) {
-    return { statusCode: 400, body: "All fields are required." };
+  if (!name || !email || !message || !hasInsurance) {
+    return { statusCode: 400, body: "All required fields must be filled out." };
   }
 
   if (!validator.isEmail(email)) {
@@ -18,7 +18,10 @@ exports.handler = async (event) => {
   }
 
   const sanitizedName = validator.escape(name);
+  const sanitizedEmail = validator.escape(email);
   const sanitizedMessage = validator.escape(message);
+  const sanitizedHasInsurance = validator.escape(hasInsurance);
+  const sanitizedInsuranceProvider = insuranceProvider ? validator.escape(insuranceProvider) : "N/A";
 
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -34,7 +37,11 @@ exports.handler = async (event) => {
     from: process.env.EMAIL_USER,
     to: "info@bloomingmindok.com",
     subject: `New Contact Form Submission from ${sanitizedName}`,
-    text: `Name: ${sanitizedName}\nEmail: ${email}\nMessage: ${sanitizedMessage}`,
+    text: `Name: ${sanitizedName}
+Email: ${sanitizedEmail}
+Has Insurance: ${sanitizedHasInsurance}
+Insurance Provider: ${sanitizedInsuranceProvider}
+Message: ${sanitizedMessage}`
   };
 
   try {
