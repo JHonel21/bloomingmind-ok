@@ -115,8 +115,7 @@
       <section id="map-section">
          <div class="container">
             <h3>Location</h3>
-            <p>Address: 715 W. Main St Ste N. Jenks, OK 74037</p>
-            <p>Location: Blooming Mind, PLLC is located on Main Street in Jenks, just north of N Elm Street in the same shopping center as Jenks Tag Agency. The office can be found in Suite N in the center ‘courtyard’ section of the shopping center.</p>
+            <p>Address: 1030 W Main St. Jenks, OK 74037</p>
             <div id="map" style="width: 100%; height: 450px;"></div>
          </div>
       </section>
@@ -136,7 +135,7 @@
       <script>
          // Initialize Leaflet map
          const map = L.map('map', {
-           center: [36.0233620, -95.9782181],
+           center: [36.024528, -95.9836983],
            zoom: 15,
            gestureHandling: true
          });
@@ -148,12 +147,12 @@
          }).addTo(map);
          
          // Add a marker for your location
-         L.marker([36.0233620, -95.9782181])
+         L.marker([36.024528, -95.9836983])
            .addTo(map)
            .bindPopup(`
              <div style="font-size: 14px; line-height: 1.4; max-width: 220px;">
                <strong>Blooming Mind</strong><br>
-               715 W. Main St Ste N<br>Jenks, OK 74037<br>
+               1030 W Main St<br>Jenks, OK 74037<br>
                <a href="https://www.google.com/maps/dir/?api=1&destination=715+W+Main+St+Ste+N+Jenks+OK+74037"
                  target="_blank"
                  rel="noopener noreferrer"
