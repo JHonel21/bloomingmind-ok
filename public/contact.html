@@ -3,15 +3,19 @@
    <head>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Contact Us | Blooming Mind</title>
+      <meta name="description" content="Contact Blooming Mind to schedule a therapy appointment in Jenks or via telehealth across Oklahoma. Reach our team by phone, email, or our secure form.">
+      <meta name="keywords" content="contact blooming mind, schedule therapy jenks, oklahoma counseling, mental health intake">
       <meta name="author" content="Blooming Mind">
       <meta name="robots" content="index, follow">
       <meta name="googlebot" content="index, follow">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="theme-color" content="#ffffff">
-      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-      <meta name="apple-mobile-web-app-capable" content="yes">
-      <meta name="apple-mobile-web-app-title" content="Blooming Mind">
       <meta name="application-name" content="Blooming Mind">
+      <meta name="mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-title" content="Blooming Mind">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
       <meta name="msapplication-TileColor" content="#ffffff">
       <meta name="msapplication-navbutton-color" content="#ffffff">
       <meta name="msapplication-TileImage" content="mstile-144x144.png">
@@ -19,14 +23,23 @@
       <meta name="msapplication-square150x150logo" content="mstile-150x150.png">
       <meta name="msapplication-wide310x150logo" content="mstile-310x150.png">
       <meta name="msapplication-square310x310logo" content="mstile-310x310.png">
-      <meta name="description" content="Learn more about Blooming Mind and our team.">
-      <meta name="keywords" content="about, counseling, team, therapy">
-      <title>Contact Us - Blooming Mind</title>
-      <link rel="stylesheet" href="style1.css">
+      
+      <!-- Canonical Link for SEO Alignment -->
+      <link rel="canonical" href="https://www.bloomingmindok.com/contact.html" />
+      
+      <!-- Google Fonts match for typography consistency -->
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+      
+      <!-- Leaflet Map Styles and Scripts -->
       <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
       <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" />
+      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
       <script src="https://unpkg.com/leaflet-gesture-handling"></script>
+      
+      <!-- Google reCAPTCHA API Script -->
+      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+      
+      <link rel="stylesheet" href="style1.css">
    </head>
    <body>
       <header>
@@ -35,9 +48,9 @@
             <img src="Blooming Mind compressed.avif" alt="Home Page | Blooming Mind OK" class="logo">
             </a>
             <button id="menu-toggle" aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-            <span></span>
+               <span></span>
+               <span></span>
+               <span></span>
             </button>
             <nav>
                <ul id="nav-menu" class="nav-list">
@@ -50,13 +63,15 @@
             </nav>
          </div>
       </header>
+      
       <section id="contact">
          <div class="container">
             <h2>Contact Us</h2>
-            <form name="contact" netlify id="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-               <input type="text" name="bot-field" style="display:none">
+            <form name="contact" id="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+               <input type="text" name="bot-field" style="display:none" aria-hidden="true">
                <input type="hidden" name="form-name" value="contact">
                <input type="hidden" name="subject" id="form-subject" value="">
+               
                <div class="form-group">
                   <label for="name">Name</label>
                   <input type="text" id="name" name="name" required>
@@ -94,6 +109,7 @@
                   </label>
                </div>
                <div class="form-group">
+                  <!-- Ensure you replace your-recaptcha-site-key with your actual Netlify/Google site key -->
                   <div class="g-recaptcha" data-sitekey="your-recaptcha-site-key"></div>
                </div>
                <div class="form-group">
@@ -103,6 +119,7 @@
                   <div id="form-response"></div>
                </div>
             </form>
+            
             <div class="contact-info">
                <h3>Contact Information</h3>
                <p>Email: <a href="mailto:info@bloomingmindok.com">info@bloomingmindok.com</a></p>
@@ -111,14 +128,15 @@
             </div>
          </div>
       </section>
-      <!-- Map Section -->
+      
       <section id="map-section">
          <div class="container">
             <h3>Location & Directions</h3>
-            <p>Address: 1030 W Main St. Jenks, OK 74037</p><br>
-            <div id="map" style="width: 100%; height: 450px;"></div>
+            <p>Address: 1030 W Main St, Jenks, OK 74037</p>
+            <div id="map" style="width: 100%; height: 450px; margin-top: 15px;"></div>
          </div>
       </section>
+      
       <footer>
          <div class="container">
             <p>&copy; 2026 Blooming Mind PLLC. All rights reserved.</p>
@@ -131,7 +149,8 @@
                <a href="https://www.facebook.com/p/Blooming-Mind-PLLC-100090840948619/">Facebook</a>
             </div>
          </div>
-      </footer>
+      </footer >
+      
       <script>
          // Initialize Leaflet map
          const map = L.map('map', {
@@ -139,7 +158,6 @@
            zoom: 15,
            gestureHandling: true
          });
-         
          
          // Add OpenStreetMap tiles
          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -170,11 +188,11 @@
          
            nameField.addEventListener('input', function () {
              const name = nameField.value.trim() || 'Anonymous';
-             const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+             const today = new Date().toISOString().split('T')[0];
              subjectField.value = `New Contact Form Submission from ${name} - ${today}`;
            });
          });
       </script>    
-      <script src="script.js"></script>
+      <script src="script.js" defer></script>
    </body>
 </html>
