@@ -36,9 +36,6 @@
       <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
       <script src="https://unpkg.com/leaflet-gesture-handling"></script>
       
-      <!-- Google reCAPTCHA API Script -->
-      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-      
       <link rel="stylesheet" href="style1.css">
    </head>
    <body>
@@ -67,7 +64,7 @@
       <section id="contact">
          <div class="container">
             <h2>Contact Us</h2>
-            <form name="contact" id="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <form name="contact" id="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-netlify-recaptcha="true">
                <input type="text" name="bot-field" style="display:none" aria-hidden="true">
                <input type="hidden" name="form-name" value="contact">
                <input type="hidden" name="subject" id="form-subject" value="">
@@ -109,8 +106,7 @@
                   </label>
                </div>
                <div class="form-group">
-                  <!-- Ensure you replace your-recaptcha-site-key with your actual Netlify/Google site key -->
-                  <div class="g-recaptcha" data-sitekey="your-recaptcha-site-key"></div>
+                  <div data-netlify-recaptcha="true"></div>
                </div>
                <div class="form-group">
                   <button type="submit" class="submit-btn">Send Message</button>
@@ -149,7 +145,7 @@
                <a href="https://www.facebook.com/p/Blooming-Mind-PLLC-100090840948619/">Facebook</a>
             </div>
          </div>
-      </footer >
+      </footer>
       
       <script>
          // Initialize Leaflet map
