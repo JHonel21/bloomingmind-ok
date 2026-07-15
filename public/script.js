@@ -5,23 +5,39 @@ document.addEventListener('DOMContentLoaded', function () {
     let lastScrollTop = 0;
 
     function showNotification(message, type) {
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.textContent = message;
-        const form = document.getElementById('contact-form');
-        form.appendChild(notification);
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.setAttribute('role', 'alert');
+    notification.setAttribute('aria-live', 'assertive');
 
-        // Force reflow to enable animation
-        requestAnimationFrame(() => {
-            notification.classList.add('show');
-        });
+    const text = document.createElement('span');
+    text.textContent = message;
+    notification.appendChild(text);
 
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                notification.remove();
-            }, 400); // matches transition duration
-        }, 3000);
+    function dismiss() {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 400);
+    }
+
+    if (type === 'error') {
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'notification-close';
+        closeBtn.setAttribute('aria-label', 'Close notification');
+        closeBtn.textContent = '×';
+        closeBtn.addEventListener('click', dismiss);
+        notification.appendChild(closeBtn);
+    }
+
+    document.body.appendChild(notification);
+
+    requestAnimationFrame(() => {
+        notification.classList.add('show');
+    });
+
+    if (type === 'success') {
+        setTimeout(dismiss, 3500);
+    }
+    // errors stay until the close button is clicked
     }
 
     if (menuToggle && navMenu) {
