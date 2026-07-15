@@ -17,11 +17,15 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: "Invalid email format." };
   }
 
-  const sanitizedName = validator.escape(name);
-  const sanitizedEmail = validator.escape(email);
-  const sanitizedMessage = validator.escape(message);
-  const sanitizedHasInsurance = validator.escape(hasInsurance);
-  const sanitizedInsuranceProvider = insuranceProvider ? validator.escape(insuranceProvider) : "N/A";
+  // Strip newlines/carriage returns to prevent header injection via the
+  // "from"/subject line, since name and email feed into mailOptions.
+  const stripNewlines = (str) => str.replace(/[\r\n]+/g, " ").trim();
+
+  const cleanName = stripNewlines(name);
+  const cleanEmail = stripNewlines(email);
+  const cleanMessage = message.trim(); // message only goes in the body, newlines are fine/expected here
+  const cleanHasInsurance = stripNewlines(hasInsurance);
+  const cleanInsuranceProvider = insuranceProvider ? stripNewlines(insuranceProvider) : "N/A";
 
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -36,12 +40,13 @@ exports.handler = async (event) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: "info@bloomingmindok.com",
-    subject: `New Contact Form Submission from ${sanitizedName}`,
-    text: `Name: ${sanitizedName}
-Email: ${sanitizedEmail}
-Has Insurance: ${sanitizedHasInsurance}
-Insurance Provider: ${sanitizedInsuranceProvider}
-Message: ${sanitizedMessage}`
+    replyTo: cleanEmail, // lets staff hit "reply" and go straight to the submitter
+    subject: `New Contact Form Submission from ${cleanName}`,
+    text: `Name: ${cleanName}
+Email: ${cleanEmail}
+Has Insurance: ${cleanHasInsurance}
+Insurance Provider: ${cleanInsuranceProvider}
+Message: ${cleanMessage}`
   };
 
   try {
