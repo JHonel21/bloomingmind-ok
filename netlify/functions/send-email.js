@@ -41,7 +41,7 @@ exports.handler = async (event) => {
     from: process.env.EMAIL_USER,
     to: "info@bloomingmindok.com",
     replyTo: cleanEmail, // lets staff hit "reply" and go straight to the submitter
-    subject: `New Contact Form Submission from ${cleanName}`,
+    subject: `Blooming Mind Contact Form Submission from ${cleanName}`,
     text: `Name: ${cleanName}
 Email: ${cleanEmail}
 Has Insurance: ${cleanHasInsurance}
