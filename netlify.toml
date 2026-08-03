@@ -1,5 +1,5 @@
 [build]
-  publish = "public"
+  publish = "public" # Root directory
   functions = "netlify/functions"
   command = ""
 
@@ -8,3 +8,18 @@
 
 [[plugins]]
 package = "@netlify/plugin-emails"
+
+[[redirects]]
+  from = "/about-us"
+  to = "/about.html"
+  status = 301
+
+[[redirects]]
+  from = "/team"
+  to = "/team.html"
+  status = 301
+
+[[redirects]]
+  from = "/our-team"
+  to = "/team.html"
+  status = 301
