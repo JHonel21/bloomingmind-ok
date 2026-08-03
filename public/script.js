@@ -135,4 +135,26 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // Highlight the active link in the services-page sub-navigation
+    // (Services / Fees & Insurance / FAQs) as the user scrolls.
+    const subnavLinks = document.querySelectorAll('.page-subnav a');
+    if (subnavLinks.length) {
+        const sections = Array.from(subnavLinks)
+            .map(link => document.querySelector(link.getAttribute('href')))
+            .filter(Boolean);
+
+        const subnavObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const link = document.querySelector(`.page-subnav a[href="#${entry.target.id}"]`);
+                if (!link) return;
+                if (entry.isIntersecting) {
+                    subnavLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+
+        sections.forEach(section => subnavObserver.observe(section));
+    }
 });
