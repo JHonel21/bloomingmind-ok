@@ -2,32 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.bloomingmindok.com/</loc>
-    <lastmod>2026-06-29</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <priority>1.00</priority>
   </url>
   <url>
     <loc>https://www.bloomingmindok.com/about.html</loc>
-    <lastmod>2026-06-29</lastmod>
+    <lastmod>2026-08-03</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://www.bloomingmindok.com/team.html</loc>
+    <lastmod>2026-08-03</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://www.bloomingmindok.com/services.html</loc>
-    <lastmod>2026-06-29</lastmod>
-    <priority>0.80</priority>
+    <lastmod>2026-08-03</lastmod>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://www.bloomingmindok.com/contact.html</loc>
-    <lastmod>2026-06-29</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://www.bloomingmindok.com/privacy-policy.html</loc>
-    <lastmod>2026-06-29</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <priority>0.30</priority>
   </url>
   <url>
     <loc>https://www.bloomingmindok.com/terms-conditions.html</loc>
-    <lastmod>2026-06-29</lastmod>
+    <lastmod>2026-08-03</lastmod>
+    <priority>0.30</priority>
+  </url>
+  <url>
+    <loc>https://www.bloomingmindok.com/no-surprises.html</loc>
+    <lastmod>2026-08-03</lastmod>
     <priority>0.30</priority>
   </url>
 </urlset>
