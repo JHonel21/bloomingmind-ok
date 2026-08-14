@@ -3,23 +3,47 @@
   functions = "netlify/functions"
   command = ""
 
-[build.environment]
-  NODE_VERSION = "22"
-
 [[plugins]]
 package = "@netlify/plugin-emails"
 
 [[redirects]]
-  from = "/about-us"
+  from = "/about"
   to = "/about.html"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/team"
   to = "/team.html"
   status = 301
+  force = true
 
 [[redirects]]
-  from = "/our-team"
-  to = "/team.html"
+  from = "/services"
+  to = "/services.html"
   status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy-policy"
+  to = "/privacy-policy.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/terms-conditions"
+  to = "/terms-conditions.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/no-surprises"
+  to = "/no-surprises.html"
+  status = 301
+  force = true
