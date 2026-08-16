@@ -4,7 +4,7 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Contact Us | Blooming Mind | Jenks & Telehealth Oklahoma</title>
+      <title>Contact Us | Blooming Mind</title>
       <meta name="description" content="Contact Blooming Mind to schedule a therapy appointment in Jenks or via telehealth across Oklahoma. Reach our team by phone, email, or our secure form.">
       <meta name="keywords" content="contact blooming mind, schedule therapy jenks, oklahoma counseling, mental health intake">
       <meta name="author" content="Blooming Mind">
@@ -23,22 +23,27 @@
       <meta name="msapplication-square150x150logo" content="mstile-150x150.png">
       <meta name="msapplication-wide310x150logo" content="mstile-310x150.png">
       <meta name="msapplication-square310x310logo" content="mstile-310x310.png">
-
+      
+      <!-- Canonical Link for SEO Alignment -->
       <link rel="canonical" href="https://www.bloomingmindok.com/contact.html" />
-
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
-
+      
+      <!-- Google Fonts match for typography consistency -->
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+      
+      <!-- Leaflet Map Styles and Scripts -->
       <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
       <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" />
       <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
       <script src="https://unpkg.com/leaflet-gesture-handling"></script>
+
+      <!-- Cloudflare Turnstile -->
+      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
       <link rel="stylesheet" href="style1.css">
       <script type="application/ld+json">
          {
          "@context": "https://schema.org",
          "@type": "ContactPage",
-         "name": "Contact Blooming Mind",
-         "url": "https://www.bloomingmindok.com/contact.html",
          "isPartOf": {
             "@type": "WebSite",
             "url": "https://www.bloomingmindok.com/",
@@ -46,129 +51,104 @@
          },
          "mainEntity": {
             "@type": "MedicalBusiness",
-            "@id": "https://www.bloomingmindok.com/#organization"
+            "id": "https://www.bloomingmindok.com/#organization"
          }
-         }
-      </script>
-      <script type="application/ld+json">
-         {
-         "@context": "https://schema.org",
-         "@type": "BreadcrumbList",
-         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.bloomingmindok.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://www.bloomingmindok.com/contact.html" }
-         ]
          }
       </script>
    </head>
    <body>
-      <a class="skip-link" href="#main-content">Skip to main content</a>
       <header>
          <div class="container header-container">
             <a href="https://www.bloomingmindok.com/">
             <img src="Blooming Mind compressed.avif" alt="Home Page | Blooming Mind OK" class="logo">
             </a>
-            <button id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+            <button id="menu-toggle" aria-label="Toggle navigation">
                <span></span>
                <span></span>
                <span></span>
             </button>
-            <nav aria-label="Primary">
+            <nav>
                <ul id="nav-menu" class="nav-list">
                   <li><a href="index.html">Home</a></li>
                   <li><a href="about.html">About</a></li>
-                  <li><a href="team.html">Our Team</a></li>
                   <li><a href="services.html">Services and Fees</a></li>
-                  <li><a href="contact.html" aria-current="page">Contact</a></li>
-                  <li class="nav-cta"><a href="https://bloomingmindok.sessionshealth.com/" target="_blank" rel="noopener noreferrer">Current Clients</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                  <li><a href="https://bloomingmindok.sessionshealth.com/" target="_blank" rel="noopener noreferrer">Current Clients</a></li>
                </ul>
             </nav>
          </div>
       </header>
-
-      <nav class="breadcrumbs" aria-label="Breadcrumb">
+      
+      <section id="contact">
          <div class="container">
-            <ol>
-               <li><a href="index.html">Home</a></li>
-               <li aria-current="page">Contact</li>
-            </ol>
-         </div>
-      </nav>
-
-      <main id="main-content">
-         <section id="contact">
-            <div class="container">
-               <h2>Contact Us</h2>
-               <form name="contact" id="contact-form" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-netlify-recaptcha="true">
-                  <input type="text" name="bot-field" style="display:none" aria-hidden="true">
-                  <input type="hidden" name="form-name" value="contact">
-                  <input type="hidden" name="subject" id="form-subject" value="">
-
-                  <div class="form-group">
-                     <label for="name">Name</label>
-                     <input type="text" id="name" name="name" required autocomplete="name">
-                  </div>
-                  <div class="form-group">
-                     <label for="email">Email</label>
-                     <input type="email" id="email" name="email" required autocomplete="email">
-                  </div>
-                  <div class="form-group">
-                     <label for="has-insurance">Do you have health insurance?</label>
-                     <select id="has-insurance" name="has-insurance" required>
-                        <option value="">-- Please Select --</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                     </select>
-                  </div>
-                  <div class="form-group">
-                     <label for="insurance-provider">Who is your insurance provider?</label>
-                     <input type="text" id="insurance-provider" name="insurance-provider" placeholder="e.g., Aetna, BCBS, United, etc." />
-                  </div>
-                  <div class="form-group">
-                     <label for="message">Message</label>
-                     <textarea id="message" name="message" rows="5" required></textarea>
-                  </div>
-                  <div class="form-group">
-                     <label class="checkbox-label">
-                     <input type="checkbox" id="privacy-policy" required>
-                     I agree to the <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
-                     </label>
-                  </div>
-                  <div class="form-group">
-                     <label class="checkbox-label">
-                     <input type="checkbox" id="terms-conditions" required>
-                     I agree to the <a href="terms-conditions.html" target="_blank">Terms and Conditions</a>
-                     </label>
-                  </div>
-                  <div class="form-group">
-                     <div data-netlify-recaptcha="true"></div>
-                  </div>
-                  <div class="form-group">
-                     <button type="submit" class="submit-btn">Send Message</button>
-                  </div>
-                  <div class="form-group">
-                     <div id="form-response" aria-live="polite"></div>
-                  </div>
-               </form>
-
-               <div class="contact-info">
-                  <h3>Contact Information</h3>
-                  <p>Email: <a href="mailto:info@bloomingmindok.com">info@bloomingmindok.com</a></p>
-                  <p>Phone: <a href="tel:9182809166">918-280-9166</a></p>
-                  <p>Fax: 918-890-1662</p>
+            <h2>Contact Us</h2>
+            <form name="contact" id="contact-form" method="POST">
+               <input type="text" name="bot-field" style="display:none" aria-hidden="true" tabindex="-1" autocomplete="off">
+               
+               <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" required>
                </div>
+               <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" required>
+               </div>
+               <div class="form-group">
+                  <label for="has-insurance">Do you have health insurance?</label>
+                  <select id="has-insurance" name="has-insurance" required>
+                     <option value="">-- Please Select --</option>
+                     <option value="Yes">Yes</option>
+                     <option value="No">No</option>
+                  </select>
+               </div>
+               <div class="form-group">
+                  <label for="insurance-provider">Who is your insurance provider?</label>
+                  <input type="text" id="insurance-provider" name="insurance-provider" placeholder="e.g., Aetna, BCBS, United, etc." />
+               </div>
+               <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" rows="5" required></textarea>
+               </div>
+               <div class="form-group">
+                  <label class="checkbox-label">
+                  <input type="checkbox" id="privacy-policy" required>
+                  I agree to the <a href="privacy-policy.html" target="_blank">Privacy Policy</a>
+                  </label>
+               </div>
+               <div class="form-group">
+                  <label class="checkbox-label">
+                  <input type="checkbox" id="terms-conditions" required>
+                  I agree to the <a href="terms-conditions.html" target="_blank">Terms and Conditions</a>
+                  </label>
+               </div>
+               <div class="form-group">
+                  <div class="cf-turnstile" data-sitekey="0x4AAAAAAER789GehOd1x_6-"></div>
+               </div>
+               <div class="form-group">
+                  <button type="submit" class="submit-btn">Send Message</button>
+               </div>
+               <div class="form-group">
+                  <div id="form-response"></div>
+               </div>
+            </form>
+            
+            <div class="contact-info">
+               <h3>Contact Information</h3>
+               <p>Email: <a href="mailto:info@bloomingmindok.com">info@bloomingmindok.com</a></p>
+               <p>Phone: 918-280-9166</p>
+               <p>Fax: 918-890-1662</p>
             </div>
-         </section>
-
-         <section id="map-section" class="section-alt">
-            <div class="container">
-               <h3>Location &amp; Directions</h3>
-               <p>Address: 1030 W Main St, Jenks, OK 74037. We also see clients statewide via telehealth for those outside the Jenks/Tulsa area.</p>
-               <div id="map" role="application" aria-label="Map showing Blooming Mind office location in Jenks, Oklahoma" style="width: 100%; height: 450px; margin-top: 15px;"></div>
-            </div>
-         </section>
-      </main>
-
+         </div>
+      </section>
+      
+      <section id="map-section">
+         <div class="container">
+            <h3>Location & Directions</h3>
+            <p>Address: 1030 W Main St, Jenks, OK 74037</p>
+            <div id="map" style="width: 100%; height: 450px; margin-top: 15px;"></div>
+         </div>
+      </section>
+      
       <footer>
          <div class="container">
             <p>&copy; 2026 Blooming Mind PLLC. All rights reserved.</p>
@@ -182,18 +162,21 @@
             </div>
          </div>
       </footer>
-
+      
       <script>
+         // Initialize Leaflet map
          const map = L.map('map', {
            center: [36.024528, -95.9836983],
            zoom: 15,
            gestureHandling: true
          });
-
+         
+         // Add OpenStreetMap tiles
          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
          }).addTo(map);
-
+         
+         // Add a marker for your location
          L.marker([36.024528, -95.9836983])
            .addTo(map)
            .bindPopup(`
@@ -214,14 +197,16 @@
          document.addEventListener('DOMContentLoaded', function () {
            const subjectField = document.getElementById('form-subject');
            const nameField = document.getElementById('name');
-
-           nameField.addEventListener('input', function () {
-             const name = nameField.value.trim() || 'Anonymous';
-             const today = new Date().toISOString().split('T')[0];
-             subjectField.value = `New Contact Form Submission from ${name} - ${today}`;
-           });
+         
+           if (subjectField && nameField) {
+             nameField.addEventListener('input', function () {
+               const name = nameField.value.trim() || 'Anonymous';
+               const today = new Date().toISOString().split('T')[0];
+               subjectField.value = `New Contact Form Submission from ${name} - ${today}`;
+             });
+           }
          });
-      </script>
+      </script>    
       <script src="script.js" defer></script>
    </body>
 </html>
