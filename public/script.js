@@ -143,4 +143,194 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // ===========================
+    // Programs page: assessment/class booking
+    // ===========================
+    const programsGrid = document.getElementById('programs-grid');
+    if (programsGrid) {
+        const statusEl = document.getElementById('programs-status');
+        const modal = document.getElementById('booking-modal');
+        const modalSubtitle = document.getElementById('booking-modal-subtitle');
+        const bookingForm = document.getElementById('booking-form');
+        const sessionIdField = document.getElementById('booking-session-id');
+        const submitBtn = document.getElementById('booking-submit-btn');
+        const responseEl = document.getElementById('booking-form-response');
+
+        function formatSessionDate(dateStr) {
+            // Parse as a local date (not UTC) so the displayed day doesn't shift.
+            const [year, month, day] = dateStr.split('-').map(Number);
+            const date = new Date(year, month - 1, day);
+            return date.toLocaleDateString('en-US', {
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+            });
+        }
+
+        function renderIndividualCard(session) {
+            const card = document.createElement('div');
+            card.className = 'program-card';
+            card.innerHTML = `
+                <h3>${session.title}</h3>
+                <p>${session.description}</p>
+                <ul class="program-meta">
+                    <li><strong>Format:</strong> ${session.format}</li>
+                    <li><strong>Length:</strong> ${session.durationLabel}</li>
+                </ul>
+                <a class="cta-button program-cta" href="${session.calendarUrl}" target="_blank" rel="noopener noreferrer">Schedule an Assessment</a>
+            `;
+            return card;
+        }
+
+        function renderClassCard(session) {
+            const card = document.createElement('div');
+            card.className = 'program-card';
+
+            const seatsLabel = session.full
+                ? 'Session full'
+                : `${session.seatsRemaining} of ${session.capacity} spots remaining`;
+            const seatsClass = session.full ? 'seats-badge seats-full' : 'seats-badge';
+
+            card.innerHTML = `
+                <h3>${session.title}</h3>
+                <p>${session.description}</p>
+                <ul class="program-meta">
+                    <li><strong>Date:</strong> ${formatSessionDate(session.date)}</li>
+                    <li><strong>Time:</strong> ${session.time}</li>
+                    <li><strong>Format:</strong> ${session.format}</li>
+                </ul>
+                <span class="${seatsClass}">${seatsLabel}</span>
+            `;
+
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'cta-button program-cta';
+            button.textContent = session.full ? 'Join Waitlist' : 'Reserve a Spot';
+            button.addEventListener('click', function () {
+                openBookingModal(session);
+            });
+
+            card.appendChild(button);
+            return card;
+        }
+
+        function renderPrograms(sessions) {
+            programsGrid.innerHTML = '';
+            sessions.forEach((session) => {
+                const card = session.type === 'individual'
+                    ? renderIndividualCard(session)
+                    : renderClassCard(session);
+                programsGrid.appendChild(card);
+            });
+            programsGrid.hidden = false;
+            statusEl.hidden = true;
+        }
+
+        function openBookingModal(session) {
+            sessionIdField.value = session.id;
+
+            modalSubtitle.textContent = session.full
+                ? `${session.title} on ${formatSessionDate(session.date)} is currently full. Submit this form to be added to the waitlist.`
+                : `${session.title} — ${formatSessionDate(session.date)}, ${session.time}`;
+
+            responseEl.textContent = '';
+            responseEl.className = '';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Confirm Reservation';
+            bookingForm.reset();
+            sessionIdField.value = session.id;
+
+            // Turnstile tokens are single-use and short-lived. Reset the
+            // widget whenever the modal opens so there's always a fresh
+            // token to submit, whether this is the first attempt or a retry.
+            if (window.turnstile) {
+                window.turnstile.reset();
+            }
+
+            modal.hidden = false;
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeBookingModal() {
+            modal.hidden = true;
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+        }
+
+        document.querySelectorAll('[data-close-modal]').forEach((el) => {
+            el.addEventListener('click', closeBookingModal);
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && !modal.hidden) {
+                closeBookingModal();
+            }
+        });
+
+        bookingForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const payload = {
+                sessionId: sessionIdField.value,
+                name: bookingForm.elements['name'].value,
+                email: bookingForm.elements['email'].value,
+                phone: bookingForm.elements['phone'].value,
+                notes: bookingForm.elements['notes'].value,
+                botField: bookingForm.elements['botField'].value,
+                turnstileToken: document.querySelector('[name="cf-turnstile-response"]')?.value || ''
+            };
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            responseEl.textContent = '';
+            responseEl.className = '';
+
+            fetch('/.netlify/functions/book-session', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        responseEl.textContent = "You're confirmed! Check your email for details.";
+                        responseEl.className = 'booking-response success';
+                        submitBtn.textContent = 'Reserved';
+                        loadPrograms(); // refresh seat counts in the background
+                        setTimeout(closeBookingModal, 2500);
+                    } else {
+                        return response.text().then((text) => {
+                            throw new Error(text || 'Something went wrong. Please try again.');
+                        });
+                    }
+                })
+                .catch((error) => {
+                    responseEl.textContent = error.message;
+                    responseEl.className = 'booking-response error';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Confirm Reservation';
+                    if (window.turnstile) {
+                        window.turnstile.reset();
+                    }
+                });
+        });
+
+        function loadPrograms() {
+            fetch('/.netlify/functions/get-sessions')
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Unable to load current availability.');
+                    }
+                    return response.json();
+                })
+                .then(renderPrograms)
+                .catch(() => {
+                    statusEl.textContent = 'We had trouble loading current availability. Please call 918-280-9166 or try again shortly.';
+                });
+        }
+
+        loadPrograms();
+    }
 });
