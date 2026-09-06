@@ -139,7 +139,15 @@
                   <li><a href="index.html">Home</a></li>
                   <li><a href="about.html">About</a></li>
                   <li><a href="team.html" aria-current="page">Our Team</a></li>
-                  <li><a href="services.html">Services and Fees</a></li>
+                  <li class="nav-dropdown">
+                     <a href="services.html">Services and Fees</a>
+                     <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-controls="services-submenu" aria-label="More service options">
+                        <span class="nav-caret" aria-hidden="true"></span>
+                     </button>
+                     <ul id="services-submenu" class="nav-submenu">
+                        <li><a href="programs.html">Assessments &amp; Classes</a></li>
+                     </ul>
+                  </li>
                   <li><a href="contact.html">Contact</a></li>
                   <li class="nav-cta"><a href="https://bloomingmindok.sessionshealth.com/" target="_blank" rel="noopener noreferrer">Current Clients</a></li>
                </ul>
