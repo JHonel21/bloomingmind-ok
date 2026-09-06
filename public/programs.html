@@ -9,15 +9,12 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="theme-color" content="#ffffff">
 
-      <!-- Canonical Link to establish page hierarchy relative to the homepage -->
       <link rel="canonical" href="https://www.bloomingmindok.com/programs.html">
 
-      <!-- Optimized Title and Description for Local SEO -->
       <title>Assessments &amp; Classes | Blooming Mind | Jenks &amp; Broken Arrow, OK</title>
       <meta name="description" content="Schedule an individual assessment or reserve a seat in a group skills class at Blooming Mind, serving Jenks, Broken Arrow, and statewide Oklahoma telehealth.">
       <meta name="keywords" content="assessment, group class, therapy classes, Jenks, Broken Arrow, Oklahoma, counseling programs">
 
-      <!-- Mobile App Meta -->
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
       <meta name="apple-mobile-web-app-capable" content="yes">
       <meta name="apple-mobile-web-app-title" content="Blooming Mind">
@@ -30,14 +27,19 @@
       <meta name="msapplication-wide310x150logo" content="mstile-310x310.png">
       <meta name="msapplication-square3310x310logo" content="mstile-310x310.png">
 
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="style1.css">
       <link rel="stylesheet" href="programs.css">
+
+      <!-- Cloudflare Turnstile -->
       <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
       <script type="application/ld+json">
          {
          "@context": "https://schema.org",
          "@type": "MedicalWebPage",
+         "name": "Assessments & Classes | Blooming Mind",
+         "url": "https://www.bloomingmindok.com/programs.html",
          "isPartOf": {
             "@type": "WebSite",
             "url": "https://www.bloomingmindok.com/",
@@ -45,49 +47,79 @@
          },
          "mainEntity": {
             "@type": "MedicalBusiness",
-            "id": "https://www.bloomingmindok.com/#organization"
+            "@id": "https://www.bloomingmindok.com/#organization"
          }
+         }
+      </script>
+      <script type="application/ld+json">
+         {
+         "@context": "https://schema.org",
+         "@type": "BreadcrumbList",
+         "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.bloomingmindok.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Assessments & Classes", "item": "https://www.bloomingmindok.com/programs.html" }
+         ]
          }
       </script>
    </head>
    <body>
+      <a class="skip-link" href="#main-content">Skip to main content</a>
       <header>
          <div class="container header-container">
             <a href="https://www.bloomingmindok.com/">
             <img src="Blooming Mind compressed.avif" alt="Home Page | Blooming Mind OK" class="logo">
             </a>
-            <button id="menu-toggle" aria-label="Toggle navigation">
+            <button id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
                <span></span>
                <span></span>
                <span></span>
             </button>
-            <nav>
+            <nav aria-label="Primary">
                <ul id="nav-menu" class="nav-list">
                   <li><a href="index.html">Home</a></li>
                   <li><a href="about.html">About</a></li>
-                  <li><a href="services.html">Services and Fees</a></li>
-                  <li><a href="programs.html">Assessments &amp; Classes</a></li>
+                  <li><a href="team.html">Our Team</a></li>
+                  <li class="nav-dropdown open">
+                     <a href="services.html">Services and Fees</a>
+                     <button type="button" class="nav-dropdown-toggle" aria-expanded="true" aria-controls="services-submenu" aria-label="More service options">
+                        <span class="nav-caret" aria-hidden="true"></span>
+                     </button>
+                     <ul id="services-submenu" class="nav-submenu">
+                        <li><a href="programs.html" aria-current="page">Assessments &amp; Classes</a></li>
+                     </ul>
+                  </li>
                   <li><a href="contact.html">Contact</a></li>
-                  <li><a href="https://bloomingmindok.sessionshealth.com/" target="_blank" rel="noopener noreferrer">Current Clients</a></li>
+                  <li class="nav-cta"><a href="https://bloomingmindok.sessionshealth.com/" target="_blank" rel="noopener noreferrer">Current Clients</a></li>
                </ul>
             </nav>
          </div>
       </header>
 
-      <section id="programs-intro">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
          <div class="container">
-            <h2>Assessments &amp; Classes</h2>
-            <p>Schedule an individual assessment with one of our clinicians, or reserve a seat in an upcoming group skills class. Group class dates are added regularly, so please check back if nothing here fits your schedule.</p>
-            <p class="programs-help">Need help choosing or scheduling? Call us at <a href="tel:19182809166">918-280-9166</a> or email <a href="mailto:info@bloomingmindok.com">info@bloomingmindok.com</a>.</p>
+            <ol>
+               <li><a href="index.html">Home</a></li>
+               <li aria-current="page">Assessments &amp; Classes</li>
+            </ol>
          </div>
-      </section>
+      </nav>
 
-      <section id="programs-list">
-         <div class="container">
-            <div id="programs-status" class="programs-status" role="status" aria-live="polite">Loading available assessments and classes&hellip;</div>
-            <div id="programs-grid" class="programs-grid" hidden></div>
-         </div>
-      </section>
+      <main id="main-content">
+         <section id="programs-intro">
+            <div class="container">
+               <h2>Assessments &amp; Classes</h2>
+               <p>Schedule an individual assessment with one of our clinicians, or reserve a seat in an upcoming group skills class. Group class dates are added regularly, so please check back if nothing here fits your schedule.</p>
+               <p class="programs-help">Need help choosing or scheduling? Call us at <a href="tel:19182809166">918-280-9166</a> or email <a href="mailto:info@bloomingmindok.com">info@bloomingmindok.com</a>.</p>
+            </div>
+         </section>
+
+         <section id="programs-list">
+            <div class="container">
+               <div id="programs-status" class="programs-status" role="status" aria-live="polite">Loading available assessments and classes&hellip;</div>
+               <div id="programs-grid" class="programs-grid" hidden></div>
+            </div>
+         </section>
+      </main>
 
       <!-- Booking modal for group classes. Hidden until a "Reserve a spot" button is clicked. -->
       <div id="booking-modal" class="booking-modal" hidden aria-hidden="true">
