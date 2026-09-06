@@ -54,6 +54,41 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // ===========================
+    // Services dropdown (desktop click/keyboard support; CSS handles
+    // hover and focus-within for mouse and tab users)
+    // ===========================
+    document.querySelectorAll('.nav-dropdown-toggle').forEach((toggle) => {
+        const dropdown = toggle.closest('.nav-dropdown');
+        if (!dropdown) return;
+
+        toggle.addEventListener('click', function (event) {
+            event.stopPropagation();
+            const isOpen = dropdown.classList.toggle('open');
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    });
+
+    document.addEventListener('click', function (event) {
+        document.querySelectorAll('.nav-dropdown.open').forEach((dropdown) => {
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('open');
+                const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+                if (toggle) toggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            document.querySelectorAll('.nav-dropdown.open').forEach((dropdown) => {
+                dropdown.classList.remove('open');
+                const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+                if (toggle) toggle.setAttribute('aria-expanded', 'false');
+            });
+        }
+    });
+
     let windowWidth = window.innerWidth;
     window.addEventListener('resize', function () {
         windowWidth = window.innerWidth;
