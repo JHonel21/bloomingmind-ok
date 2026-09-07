@@ -273,12 +273,20 @@ program pages later doesn't keep growing the top-level nav.
 .nav-dropdown-toggle {
   background: none;
   border: none;
-  padding: 10px 8px;
-  margin-left: 0;
+  font: inherit;
+  color: #333;
+  font-weight: 700;
+  padding: 10px 15px;
+  border-radius: 5px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  color: #333;
+  gap: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-dropdown-toggle:hover {
+  background-color: #e7e7e7;
 }
 
 .nav-caret {
@@ -291,9 +299,7 @@ program pages later doesn't keep growing the top-level nav.
   transition: transform 0.2s ease;
 }
 
-.nav-dropdown.open .nav-caret,
-.nav-dropdown:hover .nav-caret,
-.nav-dropdown:focus-within .nav-caret {
+.nav-dropdown.open .nav-caret {
   transform: rotate(225deg);
 }
 
@@ -315,9 +321,7 @@ program pages later doesn't keep growing the top-level nav.
   z-index: 1001;
 }
 
-.nav-dropdown.open .nav-submenu,
-.nav-dropdown:hover .nav-submenu,
-.nav-dropdown:focus-within .nav-submenu {
+.nav-dropdown.open .nav-submenu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -387,7 +391,17 @@ Responsive Navigation
   }
 
   .nav-dropdown-toggle {
-      display: none; /* submenu is always expanded on mobile, no toggle needed */
+      cursor: default;
+      pointer-events: none; /* becomes a plain section label; links live in the submenu below */
+      justify-content: center;
+      width: 100%;
+      padding: 15px;
+      font-size: 1.1rem;
+      border-radius: 0;
+  }
+
+  .nav-caret {
+      display: none; /* submenu is always expanded on mobile, nothing to toggle */
   }
 
   .nav-submenu {

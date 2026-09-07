@@ -94,6 +94,29 @@ document.addEventListener('DOMContentLoaded', function () {
         windowWidth = window.innerWidth;
     });
 
+    // ===========================
+    // Scroll reveal for .reveal sections (progressively enhanced)
+    // ===========================
+    const revealEls = document.querySelectorAll('.reveal');
+    if (revealEls.length) {
+        if ('IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+            revealEls.forEach((el) => revealObserver.observe(el));
+        } else {
+            // No IntersectionObserver support: show everything immediately
+            // rather than leaving sections stuck invisible.
+            revealEls.forEach((el) => el.classList.add('is-visible'));
+        }
+    }
+
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function (event) {

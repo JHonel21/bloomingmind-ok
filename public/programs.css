@@ -123,6 +123,10 @@ Booking Modal
   padding: 20px;
 }
 
+.booking-modal[hidden] {
+  display: none;
+}
+
 .booking-modal-backdrop {
   position: absolute;
   inset: 0;

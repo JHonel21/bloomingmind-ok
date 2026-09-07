@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer");
 const validator = require("validator");
+const { verifyTurnstile } = require("./lib/verify-turnstile");
 
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
@@ -7,7 +8,13 @@ exports.handler = async (event) => {
   }
 
   const formData = JSON.parse(event.body);
-  const { name, email, message, hasInsurance, insuranceProvider } = formData;
+  const { name, email, message, hasInsurance, insuranceProvider, botField, turnstileToken } = formData;
+
+  // Honeypot: real visitors never see or fill this in. If it has a value,
+  // silently pretend success so bots don't learn to look elsewhere.
+  if (botField) {
+    return { statusCode: 200, body: "OK" };
+  }
 
   if (!name || !email || !message || !hasInsurance) {
     return { statusCode: 400, body: "All required fields must be filled out." };
@@ -15,6 +22,12 @@ exports.handler = async (event) => {
 
   if (!validator.isEmail(email)) {
     return { statusCode: 400, body: "Invalid email format." };
+  }
+
+  const remoteIp = event.headers["x-nf-client-connection-ip"];
+  const turnstileValid = await verifyTurnstile(turnstileToken, remoteIp);
+  if (!turnstileValid) {
+    return { statusCode: 400, body: "We couldn't verify you're not a robot. Please try again." };
   }
 
   // Strip newlines/carriage returns to prevent header injection via the
