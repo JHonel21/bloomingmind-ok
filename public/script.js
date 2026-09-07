@@ -395,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .then(renderPrograms)
                 .catch(() => {
-                    statusEl.textContent = 'We had trouble loading current availability. Please call 918-280-9166 or try again shortly.';
+                    statusEl.textContent = 'Group classes coming soon!';
                 });
         }
 
