@@ -1,0 +1,196 @@
+/* ===========================
+Programs & Assessments Page
+=========================== */
+
+#programs-intro {
+  background-color: var(--color-surface);
+  padding: 40px 0 20px;
+}
+
+#programs-intro h2 {
+  color: var(--color-forest);
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+}
+
+.programs-help {
+  font-weight: 600;
+  color: var(--color-forest);
+}
+
+#programs-list {
+  background-color: var(--color-bg);
+  padding: 20px 0 60px;
+}
+
+.programs-status {
+  text-align: center;
+  padding: 40px 0;
+  font-size: 1.1rem;
+  color: var(--color-muted);
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.program-card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: 25px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+}
+
+.program-card h3 {
+  color: var(--color-forest);
+  font-family: var(--font-heading);
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+}
+
+.program-card p {
+  color: var(--color-ink);
+  margin-bottom: 15px;
+}
+
+.program-meta {
+  list-style: none;
+  margin-bottom: 15px;
+  padding: 0;
+  color: var(--color-ink);
+}
+
+.program-meta li {
+  margin-bottom: 6px;
+}
+
+.seats-badge {
+  display: inline-block;
+  align-self: flex-start;
+  background-color: #e7f3e2;
+  color: var(--color-forest);
+  border: 1px solid var(--color-sage);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.seats-badge.seats-full {
+  background-color: #fdecea;
+  color: #a83a33;
+  border-color: var(--color-coral);
+}
+
+.program-cta {
+  margin-top: auto;
+  display: inline-block;
+  background-color: var(--color-indigo);
+  color: #ffffff;
+  text-align: center;
+  padding: 12px 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.program-cta:hover {
+  background-color: var(--color-indigo-dark);
+  transform: translateY(-1px);
+}
+
+/* ===========================
+Booking Modal
+=========================== */
+
+.booking-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.booking-modal[hidden] {
+  display: none;
+}
+
+.booking-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.booking-modal-dialog {
+  position: relative;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  max-width: 480px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+}
+
+.booking-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-muted);
+  padding: 4px 8px;
+}
+
+.booking-modal-dialog h3 {
+  color: var(--color-forest);
+  font-family: var(--font-heading);
+  margin-bottom: 10px;
+  padding-right: 30px;
+}
+
+.booking-modal-subtitle {
+  color: var(--color-ink);
+  margin-bottom: 20px;
+}
+
+.booking-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.booking-response {
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.booking-response.success {
+  color: var(--color-forest);
+}
+
+.booking-response.error {
+  color: #a83a33;
+}
+
+body.modal-open {
+  overflow: hidden;
+}

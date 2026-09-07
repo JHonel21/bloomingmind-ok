@@ -25,6 +25,12 @@ package = "@netlify/plugin-emails"
   force = true
 
 [[redirects]]
+  from = "/programs"
+  to = "/programs.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/contact"
   to = "/contact.html"
   status = 301

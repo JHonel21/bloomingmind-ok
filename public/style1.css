@@ -260,6 +260,91 @@ Hamburger Menu Styles
 }
 
 /* ===========================
+Services Dropdown
+Groups "Services and Fees" with "Assessments & Classes" so adding new
+program pages later doesn't keep growing the top-level nav.
+=========================== */
+.nav-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-dropdown-toggle {
+  background: none;
+  border: none;
+  font: inherit;
+  color: #333;
+  font-weight: 700;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-dropdown-toggle:hover {
+  background-color: #e7e7e7;
+}
+
+.nav-caret {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.nav-dropdown.open .nav-caret {
+  transform: rotate(225deg);
+}
+
+.nav-submenu {
+  list-style: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 210px;
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-sm);
+  padding: 6px;
+  margin: 4px 0 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  z-index: 1001;
+}
+
+.nav-dropdown.open .nav-submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-submenu li {
+  margin: 0;
+}
+
+.nav-submenu li a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.nav-submenu li a[aria-current="page"] {
+  color: var(--color-forest);
+  background-color: #eef3ec;
+}
+
+/* ===========================
 Responsive Navigation
 =========================== */
 @media (max-width: 1024px) {
@@ -296,6 +381,42 @@ Responsive Navigation
       text-align: center;
       padding: 15px;
       font-size: 1.1rem;
+      border-radius: 0;
+  }
+
+  .nav-dropdown {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+  }
+
+  .nav-dropdown-toggle {
+      display: none; /* avoids duplicating "Services & Fees" as both a heading and a link below it */
+  }
+
+  .nav-caret {
+      display: none; /* submenu is always expanded on mobile, nothing to toggle */
+  }
+
+  .nav-submenu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      background-color: transparent;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      border-radius: 0;
+  }
+
+  .nav-submenu li a {
+      display: block;
+      text-align: center;
+      padding: 15px;
+      font-size: 1.1rem;
+      font-weight: 700;
       border-radius: 0;
   }
 
