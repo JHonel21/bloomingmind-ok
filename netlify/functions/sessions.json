@@ -1,0 +1,31 @@
+[
+  {
+    "id": "individual-assessment",
+    "type": "individual",
+    "title": "Individual Assessment",
+    "description": "A one-on-one intake assessment with one of our licensed clinicians to determine the best course of care for your specific needs.",
+    "format": "In-person (Jenks office) or Telehealth",
+    "durationLabel": "50-60 minutes",
+    "calendarUrl": "https://calendar.google.com/calendar/u/0/appointments/REPLACE_WITH_YOUR_SCHEDULE_LINK"
+  },
+  {
+    "id": "anxiety-skills-class-2026-09-20",
+    "type": "class",
+    "title": "Managing Anxiety: Group Skills Class",
+    "description": "A skills-based group class covering practical tools for managing anxiety day to day. Open to current and prospective clients.",
+    "format": "In-person (Jenks office)",
+    "date": "2026-09-20",
+    "time": "10:00 AM - 11:30 AM",
+    "capacity": 15
+  },
+  {
+    "id": "parenting-support-class-2026-10-04",
+    "type": "class",
+    "title": "Parenting Support Group",
+    "description": "A guided discussion group for parents navigating behavioral, emotional, or developmental challenges with their children.",
+    "format": "In-person (Jenks office)",
+    "date": "2026-10-04",
+    "time": "5:30 PM - 7:00 PM",
+    "capacity": 15
+  }
+]
