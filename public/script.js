@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ===========================
-    // Services dropdown (desktop click/keyboard support; CSS handles
-    // hover and focus-within for mouse and tab users)
+    // Services dropdown (click-toggle only, no hover behavior, to avoid
+    // the double-tap-to-navigate issue hover menus cause on touch devices)
     // ===========================
     document.querySelectorAll('.nav-dropdown-toggle').forEach((toggle) => {
         const dropdown = toggle.closest('.nav-dropdown');
@@ -66,6 +66,16 @@ document.addEventListener('DOMContentLoaded', function () {
             event.stopPropagation();
             const isOpen = dropdown.classList.toggle('open');
             toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    });
+
+    document.querySelectorAll('.nav-submenu a').forEach((link) => {
+        link.addEventListener('click', function () {
+            const dropdown = link.closest('.nav-dropdown');
+            if (!dropdown) return;
+            dropdown.classList.remove('open');
+            const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+            if (toggle) toggle.setAttribute('aria-expanded', 'false');
         });
     });
 

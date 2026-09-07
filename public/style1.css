@@ -391,13 +391,7 @@ Responsive Navigation
   }
 
   .nav-dropdown-toggle {
-      cursor: default;
-      pointer-events: none; /* becomes a plain section label; links live in the submenu below */
-      justify-content: center;
-      width: 100%;
-      padding: 15px;
-      font-size: 1.1rem;
-      border-radius: 0;
+      display: none; /* avoids duplicating "Services & Fees" as both a heading and a link below it */
   }
 
   .nav-caret {
@@ -410,7 +404,7 @@ Responsive Navigation
       visibility: visible;
       transform: none;
       box-shadow: none;
-      background-color: #f7f7f7;
+      background-color: transparent;
       width: 100%;
       padding: 0;
       margin: 0;
@@ -418,8 +412,10 @@ Responsive Navigation
   }
 
   .nav-submenu li a {
-      padding: 12px 15px 12px 40px;
-      font-size: 1rem;
+      display: block;
+      text-align: center;
+      padding: 15px;
+      font-size: 1.1rem;
       font-weight: 700;
       border-radius: 0;
   }
