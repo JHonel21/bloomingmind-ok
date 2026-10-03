@@ -53,3 +53,11 @@ package = "@netlify/plugin-emails"
   to = "/no-surprises.html"
   status = 301
   force = true
+
+# Short path for the printed flyer QR code. 302 (not 301) so it can be
+# repointed later without browsers or search engines caching the target.
+[[redirects]]
+  from = "/intensive"
+  to = "/programs.html#intensive"
+  status = 302
+  force = true

@@ -31,10 +31,10 @@
       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
       
       <!-- Leaflet Map Styles and Scripts -->
-      <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-      <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" />
-      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-      <script src="https://unpkg.com/leaflet-gesture-handling"></script>
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+      <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling@1.2.2/dist/leaflet-gesture-handling.min.css" />
+      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+      <script src="https://unpkg.com/leaflet-gesture-handling@1.2.2/dist/leaflet-gesture-handling.min.js"></script>
 
       <!-- Cloudflare Turnstile -->
       <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -203,20 +203,6 @@
            `)
            .openPopup();
       </script>
-      <script>
-         document.addEventListener('DOMContentLoaded', function () {
-           const subjectField = document.getElementById('form-subject');
-           const nameField = document.getElementById('name');
-         
-           if (subjectField && nameField) {
-             nameField.addEventListener('input', function () {
-               const name = nameField.value.trim() || 'Anonymous';
-               const today = new Date().toISOString().split('T')[0];
-               subjectField.value = `New Contact Form Submission from ${name} - ${today}`;
-             });
-           }
-         });
-      </script>    
       <script src="script.js" defer></script>
    </body>
 </html>

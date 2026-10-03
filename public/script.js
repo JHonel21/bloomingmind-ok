@@ -40,6 +40,27 @@ document.addEventListener('DOMContentLoaded', function () {
     // errors stay until the close button is clicked
     }
 
+    // Turnstile helpers. Pages can hold more than one widget (the programs page
+    // has the intensive inquiry form and the class booking modal), so the token
+    // is always read from, and the reset always aimed at, the form being
+    // submitted. A page-wide querySelector would grab whichever widget comes
+    // first in the DOM.
+    function getTurnstileToken(form) {
+        const field = form.querySelector('[name="cf-turnstile-response"]');
+        return field ? field.value : '';
+    }
+
+    function resetTurnstile(form) {
+        const widget = form.querySelector('.cf-turnstile');
+        if (window.turnstile && widget) {
+            try {
+                window.turnstile.reset(widget);
+            } catch (error) {
+                // Widget not rendered yet. Nothing to reset.
+            }
+        }
+    }
+
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', function () {
             navMenu.classList.toggle('active');
@@ -139,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 hasInsurance: contactForm.elements['has-insurance'].value,
                 insuranceProvider: contactForm.elements['insurance-provider'].value,
                 botField: contactForm.elements['bot-field'].value,
-                turnstileToken: document.querySelector('[name="cf-turnstile-response"]')?.value || ''
+                turnstileToken: getTurnstileToken(contactForm)
             };
 
             fetch('/.netlify/functions/send-email', {
@@ -151,9 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (response.ok) {
                         showNotification('Message Sent Successfully!', 'success');
                         contactForm.reset();
-                        if (window.turnstile) {
-                            turnstile.reset();
-                        }
+                        resetTurnstile(contactForm);
                         const insuranceField = document.getElementById('insurance-provider');
                         if (insuranceField) {
                             insuranceField.parentElement.style.display = 'none';
@@ -166,9 +185,67 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .catch(error => {
                     showNotification(`Failed to send message: ${error.message}`, 'error');
-                    if (window.turnstile) {
-                        turnstile.reset();
+                    resetTurnstile(contactForm);
+                });
+        });
+    }
+
+    // ===========================
+    // Programs page: intensive inquiry form
+    // (separate endpoint and email from the general contact form)
+    // ===========================
+    const intensiveForm = document.getElementById('intensive-form');
+    if (intensiveForm) {
+        const intensiveBtn = document.getElementById('intensive-submit-btn');
+        const intensiveResponse = document.getElementById('intensive-form-response');
+
+        intensiveForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const payload = {
+                program: intensiveForm.elements['program'].value,
+                name: intensiveForm.elements['name'].value,
+                email: intensiveForm.elements['email'].value,
+                phone: intensiveForm.elements['phone'].value,
+                preferredFormat: intensiveForm.elements['preferredFormat'].value,
+                message: intensiveForm.elements['message'].value,
+                consent: intensiveForm.elements['privacy'].checked && intensiveForm.elements['terms'].checked,
+                botField: intensiveForm.elements['botField'].value,
+                turnstileToken: getTurnstileToken(intensiveForm)
+            };
+
+            intensiveBtn.disabled = true;
+            intensiveBtn.textContent = 'Sending...';
+            intensiveResponse.textContent = '';
+            intensiveResponse.className = 'inquiry-response';
+
+            fetch('/.netlify/functions/send-program-inquiry', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        intensiveForm.reset();
+                        resetTurnstile(intensiveForm);
+                        intensiveResponse.textContent = "Thank you. We received your inquiry and will be in touch to schedule a consult.";
+                        intensiveResponse.className = 'inquiry-response success';
+                        showNotification('Inquiry Sent Successfully!', 'success');
+                    } else {
+                        return response.text().then(text => {
+                            throw new Error(text || 'Error sending inquiry');
+                        });
                     }
+                })
+                .catch(error => {
+                    intensiveResponse.textContent = error.message;
+                    intensiveResponse.className = 'inquiry-response error';
+                    showNotification(`Failed to send inquiry: ${error.message}`, 'error');
+                    resetTurnstile(intensiveForm);
+                })
+                .finally(() => {
+                    intensiveBtn.disabled = false;
+                    intensiveBtn.textContent = 'Send Inquiry';
                 });
         });
     }
@@ -313,9 +390,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Turnstile tokens are single-use and short-lived. Reset the
             // widget whenever the modal opens so there's always a fresh
             // token to submit, whether this is the first attempt or a retry.
-            if (window.turnstile) {
-                window.turnstile.reset();
-            }
+            resetTurnstile(bookingForm);
 
             modal.hidden = false;
             modal.setAttribute('aria-hidden', 'false');
@@ -348,7 +423,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 phone: bookingForm.elements['phone'].value,
                 notes: bookingForm.elements['notes'].value,
                 botField: bookingForm.elements['botField'].value,
-                turnstileToken: document.querySelector('[name="cf-turnstile-response"]')?.value || ''
+                turnstileToken: getTurnstileToken(bookingForm)
             };
 
             submitBtn.disabled = true;
@@ -379,9 +454,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     responseEl.className = 'booking-response error';
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Confirm Reservation';
-                    if (window.turnstile) {
-                        window.turnstile.reset();
-                    }
+                    resetTurnstile(bookingForm);
                 });
         });
 

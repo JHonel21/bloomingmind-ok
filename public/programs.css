@@ -7,7 +7,7 @@ Programs & Assessments Page
   padding: 40px 0 20px;
 }
 
-#programs-intro h2 {
+#programs-intro h1 {
   color: var(--color-forest);
   font-family: var(--font-heading);
   font-size: 2.2rem;
@@ -21,7 +21,14 @@ Programs & Assessments Page
 
 #programs-list {
   background-color: var(--color-bg);
-  padding: 20px 0 60px;
+  padding: 50px 0 60px;
+}
+
+#programs-list h2 {
+  color: var(--color-forest);
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  margin-bottom: 20px;
 }
 
 .programs-status {
@@ -170,7 +177,8 @@ Booking Modal
   margin-bottom: 20px;
 }
 
-.booking-honeypot {
+.booking-honeypot,
+.form-honeypot {
   position: absolute;
   left: -9999px;
   width: 1px;
@@ -193,4 +201,275 @@ Booking Modal
 
 body.modal-open {
   overflow: hidden;
+}
+
+/* ===========================
+Intensive: featured program
+=========================== */
+
+.intensive {
+  background-color: var(--color-surface);
+  padding-bottom: 50px;
+}
+
+.intensive-hero {
+  background: linear-gradient(135deg, var(--color-forest-dark), var(--color-forest));
+  color: #ffffff;
+  padding: 55px 0;
+}
+
+.intensive-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-sage);
+  margin-bottom: 12px;
+}
+
+.intensive-hero h2 {
+  color: #ffffff;
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  line-height: 1.15;
+  margin-bottom: 16px;
+  max-width: 18ch;
+}
+
+.intensive-lede {
+  font-size: 1.15rem;
+  max-width: 60ch;
+  margin-bottom: 28px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.intensive-stats {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.intensive-stats li {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.intensive-stats strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  line-height: 1.1;
+  color: var(--color-sage);
+  margin-bottom: 6px;
+}
+
+.intensive-stats span {
+  font-size: 0.98rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.intensive-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding-top: 45px;
+}
+
+.intensive-col h3 {
+  font-size: 1.5rem;
+  margin: 28px 0 12px;
+}
+
+.intensive-col h3:first-child {
+  margin-top: 0;
+}
+
+.intensive-col p {
+  margin-bottom: 12px;
+}
+
+.check-list {
+  list-style: none;
+  margin-bottom: 8px;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 34px;
+  margin-bottom: 14px;
+}
+
+.check-list li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #e7f3e2;
+  color: var(--color-forest);
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 24px;
+  text-align: center;
+}
+
+.included-list {
+  list-style: none;
+  counter-reset: included;
+  margin-bottom: 24px;
+}
+
+.included-list li {
+  counter-increment: included;
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 14px;
+}
+
+.included-list li::before {
+  content: counter(included);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--color-forest);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 28px;
+  text-align: center;
+}
+
+.investment-card {
+  background-color: var(--color-surface-alt);
+  border-left: 4px solid var(--color-sage);
+  border-radius: var(--radius-sm);
+  padding: 22px;
+  box-shadow: var(--shadow-md);
+}
+
+.investment-price {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--color-forest);
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.investment-price span {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+.program-disclaimer {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  border-top: 1px solid #e6e6e6;
+  padding-top: 16px;
+}
+
+/* ===========================
+Intensive: inquiry form
+=========================== */
+
+.inquiry {
+  background-color: var(--color-surface-alt);
+  padding: 55px 0;
+  scroll-margin-top: calc(var(--header-height) + 10px);
+}
+
+.inquiry h2 {
+  text-align: center;
+  color: var(--color-forest);
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.inquiry-intro {
+  text-align: center;
+  max-width: 56ch;
+  margin: 0 auto 30px;
+  color: var(--color-ink);
+}
+
+.inquiry-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+}
+
+.inquiry-form input[type="tel"],
+.booking-modal-dialog input[type="tel"] {
+  width: 100%;
+  padding: 12px;
+  border: 1.5px solid var(--color-sage);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: var(--color-cream);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.inquiry-form input[type="tel"]:hover,
+.booking-modal-dialog input[type="tel"]:hover {
+  border-color: var(--color-coral);
+}
+
+.inquiry-form input[type="tel"]:focus,
+.booking-modal-dialog input[type="tel"]:focus {
+  border-color: var(--color-indigo);
+  box-shadow: 0 0 5px rgba(75, 62, 190, 0.3);
+  outline: none;
+}
+
+.field-hint {
+  margin-top: 6px;
+  font-size: 0.88rem;
+  color: var(--color-muted);
+}
+
+.inquiry-response {
+  font-weight: 600;
+  min-height: 1.2em;
+}
+
+.inquiry-response.success {
+  color: var(--color-forest);
+}
+
+.inquiry-response.error {
+  color: #a83a33;
+}
+
+@media (max-width: 900px) {
+  .intensive-body {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 700px) {
+  .intensive-stats {
+    grid-template-columns: 1fr;
+  }
+  .intensive-hero {
+    padding: 40px 0;
+  }
+  .inquiry-form {
+    padding: 20px;
+  }
 }
