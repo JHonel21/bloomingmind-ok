@@ -25,8 +25,34 @@ package = "@netlify/plugin-emails"
   force = true
 
 [[redirects]]
+  from = "/groups"
+  to = "/groups.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/intensives"
+  to = "/intensives.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ceus"
+  to = "/ceus.html"
+  status = 301
+  force = true
+
+# programs.html (Assessments & Classes) was split into groups.html and
+# intensives.html. The intensive was the only live content, so old links land there.
+[[redirects]]
   from = "/programs"
-  to = "/programs.html"
+  to = "/intensives.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/programs.html"
+  to = "/intensives.html"
   status = 301
   force = true
 
@@ -58,6 +84,6 @@ package = "@netlify/plugin-emails"
 # repointed later without browsers or search engines caching the target.
 [[redirects]]
   from = "/intensive"
-  to = "/programs.html#intensive"
+  to = "/intensives.html#secure-male-intensive"
   status = 302
   force = true

@@ -108,16 +108,26 @@
             <nav aria-label="Primary">
                <ul id="nav-menu" class="nav-list">
                   <li><a href="index.html">Home</a></li>
-                  <li><a href="about.html">About</a></li>
-                  <li><a href="team.html">Our Team</a></li>
-                  <li class="nav-dropdown">
-                     <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true" aria-controls="services-submenu">
-                        Services &amp; Fees
+                  <li class="nav-dropdown is-current" data-label="About">
+                     <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true" aria-controls="about-submenu">
+                        About
                         <span class="nav-caret" aria-hidden="true"></span>
                      </button>
-                     <ul id="services-submenu" class="nav-submenu">
+                     <ul id="about-submenu" class="nav-submenu">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Our Team</a></li>
                         <li><a href="services.html" aria-current="page">Services &amp; Fees</a></li>
-                        <li><a href="programs.html">Assessments &amp; Classes</a></li>
+                     </ul>
+                  </li>
+                  <li class="nav-dropdown" data-label="Groups, Intensives, &amp; CEUs">
+                     <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true" aria-controls="groups-submenu">
+                        Groups, Intensives, &amp; CEUs
+                        <span class="nav-caret" aria-hidden="true"></span>
+                     </button>
+                     <ul id="groups-submenu" class="nav-submenu">
+                        <li><a href="groups.html">Group Programs</a></li>
+                        <li><a href="intensives.html">8-Hour Intensives</a></li>
+                        <li><a href="ceus.html">CEUs</a></li>
                      </ul>
                   </li>
                   <li><a href="contact.html">Contact</a></li>

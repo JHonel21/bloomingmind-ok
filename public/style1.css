@@ -260,9 +260,9 @@ Hamburger Menu Styles
 }
 
 /* ===========================
-Services Dropdown
-Groups "Services and Fees" with "Assessments & Classes" so adding new
-program pages later doesn't keep growing the top-level nav.
+Nav Dropdowns
+"About" groups About Us, Our Team, and Services & Fees. "Groups, Intensives,
+& CEUs" groups the program pages, so new programs don't grow the top-level nav.
 =========================== */
 .nav-dropdown {
   position: relative;
@@ -289,6 +289,11 @@ program pages later doesn't keep growing the top-level nav.
   background-color: #e7e7e7;
 }
 
+.nav-dropdown.is-current > .nav-dropdown-toggle {
+  color: var(--color-forest);
+  background-color: #eef3ec;
+}
+
 .nav-caret {
   display: inline-block;
   width: 7px;
@@ -308,7 +313,7 @@ program pages later doesn't keep growing the top-level nav.
   position: absolute;
   top: 100%;
   left: 0;
-  min-width: 210px;
+  min-width: 220px;
   background-color: var(--color-surface);
   box-shadow: var(--shadow-md);
   border-radius: var(--radius-sm);
@@ -391,7 +396,19 @@ Responsive Navigation
   }
 
   .nav-dropdown-toggle {
-      display: none; /* avoids duplicating "Services & Fees" as both a heading and a link below it */
+      display: none; /* submenu is always expanded on mobile, so the button is replaced by a label */
+  }
+
+  .nav-dropdown::before {
+      content: attr(data-label);
+      display: block;
+      padding: 14px 15px 2px;
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-muted);
   }
 
   .nav-caret {

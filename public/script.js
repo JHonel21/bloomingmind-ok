@@ -1,10 +1,7 @@
-document.addEventListener('DOMContentLoaded', function () { 
-    const menuToggle = document.getElementById('menu-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    const header = document.querySelector('header');
-    let lastScrollTop = 0;
-
-    function showNotification(message, type) {
+// Shared helpers. Declared at the top level (not inside DOMContentLoaded) and
+// exposed on window.BM so programs.js can reuse the same notification and
+// Turnstile behavior as the contact form.
+function showNotification(message, type) {
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
     notification.setAttribute('role', 'alert');
@@ -23,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const closeBtn = document.createElement('button');
         closeBtn.className = 'notification-close';
         closeBtn.setAttribute('aria-label', 'Close notification');
-        closeBtn.textContent = '×';
+        closeBtn.textContent = '\u00d7';
         closeBtn.addEventListener('click', dismiss);
         notification.appendChild(closeBtn);
     }
@@ -38,45 +35,54 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(dismiss, 3500);
     }
     // errors stay until the close button is clicked
-    }
+}
 
-    // Turnstile helpers. Pages can hold more than one widget (the programs page
-    // has the intensive inquiry form and the class booking modal), so the token
-    // is always read from, and the reset always aimed at, the form being
-    // submitted. A page-wide querySelector would grab whichever widget comes
-    // first in the DOM.
-    function getTurnstileToken(form) {
-        const field = form.querySelector('[name="cf-turnstile-response"]');
-        return field ? field.value : '';
-    }
+// Turnstile helpers. Pages can hold more than one widget, so the token
+// is always read from, and the reset always aimed at, the form being
+// submitted. A page-wide querySelector would grab whichever widget comes
+// first in the DOM.
+function getTurnstileToken(form) {
+    const field = form.querySelector('[name="cf-turnstile-response"]');
+    return field ? field.value : '';
+}
 
-    function resetTurnstile(form) {
-        const widget = form.querySelector('.cf-turnstile');
-        if (window.turnstile && widget) {
-            try {
-                window.turnstile.reset(widget);
-            } catch (error) {
-                // Widget not rendered yet. Nothing to reset.
-            }
+function resetTurnstile(form) {
+    const widget = form.querySelector('.cf-turnstile');
+    if (window.turnstile && widget) {
+        try {
+            window.turnstile.reset(widget);
+        } catch (error) {
+            // Widget not rendered yet. Nothing to reset.
         }
     }
+}
+
+window.BM = { showNotification, getTurnstileToken, resetTurnstile };
+
+document.addEventListener('DOMContentLoaded', function () { 
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const header = document.querySelector('header');
+    let lastScrollTop = 0;
 
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', function () {
-            navMenu.classList.toggle('active');
+            const isOpen = navMenu.classList.toggle('active');
             menuToggle.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
 
         document.querySelectorAll('#nav-menu li a').forEach(link => {
             link.addEventListener('click', function () {
                 navMenu.classList.remove('active');
                 menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
             });
         });
     }
 
     // ===========================
-    // Services dropdown (click-toggle only, no hover behavior, to avoid
+    // Nav dropdowns (About, Groups/Intensives/CEUs). Click-toggle only, no hover behavior, to avoid
     // the double-tap-to-navigate issue hover menus cause on touch devices)
     // ===========================
     document.querySelectorAll('.nav-dropdown-toggle').forEach((toggle) => {
@@ -85,6 +91,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         toggle.addEventListener('click', function (event) {
             event.stopPropagation();
+            // Close any other open dropdown first so only one menu shows at a time.
+            document.querySelectorAll('.nav-dropdown.open').forEach((other) => {
+                if (other !== dropdown) {
+                    other.classList.remove('open');
+                    const otherToggle = other.querySelector('.nav-dropdown-toggle');
+                    if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
             const isOpen = dropdown.classList.toggle('open');
             toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
@@ -190,66 +204,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ===========================
-    // Programs page: intensive inquiry form
-    // (separate endpoint and email from the general contact form)
-    // ===========================
-    const intensiveForm = document.getElementById('intensive-form');
-    if (intensiveForm) {
-        const intensiveBtn = document.getElementById('intensive-submit-btn');
-        const intensiveResponse = document.getElementById('intensive-form-response');
-
-        intensiveForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            const payload = {
-                program: intensiveForm.elements['program'].value,
-                name: intensiveForm.elements['name'].value,
-                email: intensiveForm.elements['email'].value,
-                phone: intensiveForm.elements['phone'].value,
-                preferredFormat: intensiveForm.elements['preferredFormat'].value,
-                message: intensiveForm.elements['message'].value,
-                consent: intensiveForm.elements['privacy'].checked && intensiveForm.elements['terms'].checked,
-                botField: intensiveForm.elements['botField'].value,
-                turnstileToken: getTurnstileToken(intensiveForm)
-            };
-
-            intensiveBtn.disabled = true;
-            intensiveBtn.textContent = 'Sending...';
-            intensiveResponse.textContent = '';
-            intensiveResponse.className = 'inquiry-response';
-
-            fetch('/.netlify/functions/send-program-inquiry', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-            })
-                .then(response => {
-                    if (response.ok) {
-                        intensiveForm.reset();
-                        resetTurnstile(intensiveForm);
-                        intensiveResponse.textContent = "Thank you. We received your inquiry and will be in touch to schedule a consult.";
-                        intensiveResponse.className = 'inquiry-response success';
-                        showNotification('Inquiry Sent Successfully!', 'success');
-                    } else {
-                        return response.text().then(text => {
-                            throw new Error(text || 'Error sending inquiry');
-                        });
-                    }
-                })
-                .catch(error => {
-                    intensiveResponse.textContent = error.message;
-                    intensiveResponse.className = 'inquiry-response error';
-                    showNotification(`Failed to send inquiry: ${error.message}`, 'error');
-                    resetTurnstile(intensiveForm);
-                })
-                .finally(() => {
-                    intensiveBtn.disabled = false;
-                    intensiveBtn.textContent = 'Send Inquiry';
-                });
-        });
-    }
-
     window.addEventListener('scroll', function () {
         let scrollTop = window.scrollY;
         if (scrollTop > lastScrollTop) {
@@ -287,191 +241,5 @@ document.addEventListener('DOMContentLoaded', function () {
                 insuranceField.required = false;
             }
         });
-    }
-
-    // ===========================
-    // Programs page: assessment/class booking
-    // ===========================
-    const programsGrid = document.getElementById('programs-grid');
-    if (programsGrid) {
-        const statusEl = document.getElementById('programs-status');
-        const modal = document.getElementById('booking-modal');
-        const modalSubtitle = document.getElementById('booking-modal-subtitle');
-        const bookingForm = document.getElementById('booking-form');
-        const sessionIdField = document.getElementById('booking-session-id');
-        const submitBtn = document.getElementById('booking-submit-btn');
-        const responseEl = document.getElementById('booking-form-response');
-
-        function formatSessionDate(dateStr) {
-            // Parse as a local date (not UTC) so the displayed day doesn't shift.
-            const [year, month, day] = dateStr.split('-').map(Number);
-            const date = new Date(year, month - 1, day);
-            return date.toLocaleDateString('en-US', {
-                weekday: 'long',
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric',
-            });
-        }
-
-        function renderIndividualCard(session) {
-            const card = document.createElement('div');
-            card.className = 'program-card';
-            card.innerHTML = `
-                <h3>${session.title}</h3>
-                <p>${session.description}</p>
-                <ul class="program-meta">
-                    <li><strong>Format:</strong> ${session.format}</li>
-                    <li><strong>Length:</strong> ${session.durationLabel}</li>
-                </ul>
-                <a class="cta-button program-cta" href="${session.calendarUrl}" target="_blank" rel="noopener noreferrer">Schedule an Assessment</a>
-            `;
-            return card;
-        }
-
-        function renderClassCard(session) {
-            const card = document.createElement('div');
-            card.className = 'program-card';
-
-            const seatsLabel = session.full
-                ? 'Session full'
-                : `${session.seatsRemaining} of ${session.capacity} spots remaining`;
-            const seatsClass = session.full ? 'seats-badge seats-full' : 'seats-badge';
-
-            card.innerHTML = `
-                <h3>${session.title}</h3>
-                <p>${session.description}</p>
-                <ul class="program-meta">
-                    <li><strong>Date:</strong> ${formatSessionDate(session.date)}</li>
-                    <li><strong>Time:</strong> ${session.time}</li>
-                    <li><strong>Format:</strong> ${session.format}</li>
-                </ul>
-                <span class="${seatsClass}">${seatsLabel}</span>
-            `;
-
-            const button = document.createElement('button');
-            button.type = 'button';
-            button.className = 'cta-button program-cta';
-            button.textContent = session.full ? 'Join Waitlist' : 'Reserve a Spot';
-            button.addEventListener('click', function () {
-                openBookingModal(session);
-            });
-
-            card.appendChild(button);
-            return card;
-        }
-
-        function renderPrograms(sessions) {
-            programsGrid.innerHTML = '';
-            sessions.forEach((session) => {
-                const card = session.type === 'individual'
-                    ? renderIndividualCard(session)
-                    : renderClassCard(session);
-                programsGrid.appendChild(card);
-            });
-            programsGrid.hidden = false;
-            statusEl.hidden = true;
-        }
-
-        function openBookingModal(session) {
-            sessionIdField.value = session.id;
-
-            modalSubtitle.textContent = session.full
-                ? `${session.title} on ${formatSessionDate(session.date)} is currently full. Submit this form to be added to the waitlist.`
-                : `${session.title} — ${formatSessionDate(session.date)}, ${session.time}`;
-
-            responseEl.textContent = '';
-            responseEl.className = '';
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Confirm Reservation';
-            bookingForm.reset();
-            sessionIdField.value = session.id;
-
-            // Turnstile tokens are single-use and short-lived. Reset the
-            // widget whenever the modal opens so there's always a fresh
-            // token to submit, whether this is the first attempt or a retry.
-            resetTurnstile(bookingForm);
-
-            modal.hidden = false;
-            modal.setAttribute('aria-hidden', 'false');
-            document.body.classList.add('modal-open');
-        }
-
-        function closeBookingModal() {
-            modal.hidden = true;
-            modal.setAttribute('aria-hidden', 'true');
-            document.body.classList.remove('modal-open');
-        }
-
-        document.querySelectorAll('[data-close-modal]').forEach((el) => {
-            el.addEventListener('click', closeBookingModal);
-        });
-
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape' && !modal.hidden) {
-                closeBookingModal();
-            }
-        });
-
-        bookingForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            const payload = {
-                sessionId: sessionIdField.value,
-                name: bookingForm.elements['name'].value,
-                email: bookingForm.elements['email'].value,
-                phone: bookingForm.elements['phone'].value,
-                notes: bookingForm.elements['notes'].value,
-                botField: bookingForm.elements['botField'].value,
-                turnstileToken: getTurnstileToken(bookingForm)
-            };
-
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Submitting...';
-            responseEl.textContent = '';
-            responseEl.className = '';
-
-            fetch('/.netlify/functions/book-session', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-            })
-                .then((response) => {
-                    if (response.ok) {
-                        responseEl.textContent = "You're confirmed! Check your email for details.";
-                        responseEl.className = 'booking-response success';
-                        submitBtn.textContent = 'Reserved';
-                        loadPrograms(); // refresh seat counts in the background
-                        setTimeout(closeBookingModal, 2500);
-                    } else {
-                        return response.text().then((text) => {
-                            throw new Error(text || 'Something went wrong. Please try again.');
-                        });
-                    }
-                })
-                .catch((error) => {
-                    responseEl.textContent = error.message;
-                    responseEl.className = 'booking-response error';
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Confirm Reservation';
-                    resetTurnstile(bookingForm);
-                });
-        });
-
-        function loadPrograms() {
-            fetch('/.netlify/functions/get-sessions')
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Unable to load current availability.');
-                    }
-                    return response.json();
-                })
-                .then(renderPrograms)
-                .catch(() => {
-                    statusEl.textContent = 'Group classes coming soon!';
-                });
-        }
-
-        loadPrograms();
     }
 });

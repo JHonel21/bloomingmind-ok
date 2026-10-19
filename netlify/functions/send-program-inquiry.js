@@ -1,5 +1,6 @@
 const validator = require("validator");
 const { verifyTurnstile } = require("./lib/verify-turnstile");
+const { findProgram } = require("./lib/program-catalog");
 const {
   stripNewlines,
   parseBody,
@@ -7,14 +8,13 @@ const {
   createTransporter,
 } = require("./lib/mailer");
 
-// Only programs listed here are accepted. The hidden "program" field on the
-// page is just a key into this map, so a tampered value is rejected instead
-// of being echoed into an email subject.
-const PROGRAMS = {
-  "attachment-recovery-intensive": "Secure Male Attachment Recovery Intensive",
-};
+// Handles inquiries for both Group Programs and 8-Hour Intensives. The
+// "program" value from the page is only a key into the catalog built from
+// public/data/*.json, so a tampered value is rejected instead of being
+// echoed into an email subject.
 
 const FORMATS = ["In person (Jenks)", "Telehealth", "Not sure yet"];
+const ANY_DATE = "any";
 
 const LIMITS = { name: 100, email: 254, phone: 25, message: 3000 };
 
@@ -28,15 +28,26 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: "Invalid request body." };
   }
 
-  const { program, name, email, phone, preferredFormat, message, consent, botField, turnstileToken } = data;
+  const {
+    program,
+    name,
+    email,
+    phone,
+    preferredFormat,
+    preferredDate,
+    message,
+    consent,
+    botField,
+    turnstileToken,
+  } = data;
 
   // Honeypot: silently pretend success so bots don't learn to look elsewhere.
   if (botField) {
     return { statusCode: 200, body: "OK" };
   }
 
-  const programTitle = PROGRAMS[program];
-  if (!programTitle) {
+  const selected = findProgram(program);
+  if (!selected) {
     return { statusCode: 400, body: "That program could not be found." };
   }
 
@@ -69,6 +80,21 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: "Invalid format selection." };
   }
 
+  // Preferred date only applies to intensives, and must be one of the dates
+  // currently listed for that intensive (or "any").
+  let dateLine = "";
+  if (selected.kind === "intensive" && preferredDate) {
+    if (preferredDate === ANY_DATE) {
+      dateLine = "No preference, notify me of future dates";
+    } else {
+      const match = selected.dates.find((d) => d.date === preferredDate);
+      if (!match) {
+        return { statusCode: 400, body: "That date is no longer available. Please choose another." };
+      }
+      dateLine = [match.date, match.time, match.format].filter(Boolean).join(" | ");
+    }
+  }
+
   const remoteIp = event.headers["x-nf-client-connection-ip"];
   const turnstileValid = await verifyTurnstile(turnstileToken, remoteIp);
   if (!turnstileValid) {
@@ -80,6 +106,7 @@ exports.handler = async (event) => {
   const cleanPhone = phone ? stripNewlines(phone) : "Not provided";
   const cleanFormat = preferredFormat || "Not specified";
   const cleanMessage = message && message.trim() ? message.trim() : "None provided";
+  const cleanTitle = stripNewlines(selected.title);
 
   const submittedAt = new Date().toLocaleString("en-US", {
     timeZone: "America/Chicago",
@@ -92,28 +119,47 @@ exports.handler = async (event) => {
   // coordinator). Falls back to the main office inbox.
   const recipient = process.env.PROGRAM_INQUIRY_TO || "info@bloomingmindok.com";
 
+  const isIntensive = selected.kind === "intensive";
+  // The bracketed prefix makes the intent obvious at a glance and gives a
+  // stable string for a Gmail filter or label.
+  const tag = isIntensive ? "[Intensive Inquiry]" : "[Group Inquiry]";
+  const heading = isIntensive
+    ? "INTENSIVE INQUIRY (not a general contact form message)"
+    : "GROUP PROGRAM INQUIRY (not a general contact form message)";
+  const requested = isIntensive
+    ? "consult / intake for this intensive"
+    : "interest in this group (spot, interest list, or waitlist)";
+
+  const lines = [
+    heading,
+    "",
+    `Program: ${cleanTitle}`,
+    `Requested: ${requested}`,
+  ];
+  if (selected.schedule) lines.push(`Listed schedule: ${stripNewlines(selected.schedule)}`);
+  if (dateLine) lines.push(`Preferred date: ${dateLine}`);
+  lines.push(
+    `Submitted: ${submittedAt} (Central)`,
+    "",
+    `Name: ${cleanName}`,
+    `Email: ${cleanEmail}`,
+    `Phone: ${cleanPhone}`
+  );
+  if (isIntensive) lines.push(`Preferred format: ${cleanFormat}`);
+  lines.push(
+    "",
+    "Message:",
+    cleanMessage,
+    "",
+    "Next step: reach out to follow up. Reply to this email to respond directly to the sender."
+  );
+
   const mailOptions = {
     from: `"Blooming Mind Website" <${process.env.EMAIL_USER}>`,
     to: recipient,
     replyTo: cleanEmail,
-    // The [Program Inquiry] prefix makes the intent obvious at a glance and
-    // gives a stable string for a Gmail filter or label.
-    subject: `[Program Inquiry] ${programTitle}: ${cleanName}`,
-    text: `PROGRAM INQUIRY (not a general contact form message)
-
-Program: ${programTitle}
-Requested: consult / intake for this program
-Submitted: ${submittedAt} (Central)
-
-Name: ${cleanName}
-Email: ${cleanEmail}
-Phone: ${cleanPhone}
-Preferred format: ${cleanFormat}
-
-Message:
-${cleanMessage}
-
-Next step: reach out to schedule a consult or intake. Reply to this email to respond directly to the sender.`,
+    subject: `${tag} ${cleanTitle}: ${cleanName}`,
+    text: lines.join("\n"),
   };
 
   try {
