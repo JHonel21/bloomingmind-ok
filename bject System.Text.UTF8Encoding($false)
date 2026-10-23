@@ -1,0 +1,32 @@
+[1mdiff --git a/public/data/programs.json b/public/data/programs.json[m
+[1mindex 722d950..26d0b82 100644[m
+[1m--- a/public/data/programs.json[m
+[1m+++ b/public/data/programs.json[m
+[36m@@ -1,8 +1,7 @@[m
+[31m-[[m
+[32m+[m[32m﻿[[m
+   {[m
+     "id": "secure-her",[m
+     "title": "Secure Her 12-Week Healing After Betrayal Group",[m
+     "status": "forming"[m
+   }[m
+ ][m
+[31m-[][m
+[1mdiff --git a/public/groups.html b/public/groups.html[m
+[1mindex 245f4f6..956d070 100644[m
+[1m--- a/public/groups.html[m
+[1m+++ b/public/groups.html[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-<!DOCTYPE html>[m
+[32m+[m[32m﻿<!DOCTYPE html>[m
+ <html lang="en">[m
+    <head>[m
+       <meta charset="UTF-8">[m
+[36m@@ -160,7 +160,6 @@[m
+                      <label for="group-program">Which group are you interested in?</label>[m
+                      <select id="group-program" name="program" required>[m
+                         <option value="">-- Please Select --</option>[m
+[31m-                        <option value="general-groups">Secure Her 12-Week Healing After Betrayal Group</option>[m
+                         <option value="general-groups">Not sure yet, tell me about all group options</option>[m
+                      </select>[m
+                      <p id="group-schedule-note" class="inquiry-note" aria-live="polite"></p>[m
